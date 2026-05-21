@@ -1,0 +1,466 @@
+@charset "UTF-8";
+
+/* ══════════════════════════════════════════════════════════════════════════
+   PURE LAYOUT — CINEMATIC PREMIUM CSS
+   Inspirado por: Awwwards, Apple, Linear, Stripe, Vercel
+   Foco: Alta Performance (GPU), Micro-interações, Glassmorphism Real e Depth
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* ─── DESIGN TOKENS & SYSTEM VARIABLES ─── */
+:root {
+  /* Colors - Ultra Dark Space */
+  --bg-absolute: #010206;
+  --bg-surface: #040814;
+  --bg-card: rgba(8, 13, 26, 0.4);
+  
+  --brand-blue: #2563EB;
+  --brand-cyan: #06B6D4;
+  --brand-glow: rgba(6, 182, 212, 0.4);
+  
+  --text-pure: #ffffff;
+  --text-muted: rgba(255, 255, 255, 0.55);
+  --border-subtle: rgba(255, 255, 255, 0.04);
+  --border-focus: rgba(255, 255, 255, 0.12);
+
+  /* Cinematic Easing Curves */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-poly: cubic-bezier(0.76, 0, 0.24, 1);
+  --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --ease-fluid: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Fluid Spacing */
+  --space-xs: clamp(0.5rem, 1vw, 1rem);
+  --space-sm: clamp(1rem, 2vw, 2rem);
+  --space-md: clamp(2rem, 4vw, 4rem);
+  
+  /* Depth & Shadows */
+  --shadow-premium: 0 30px 60px -15px rgba(0, 0, 0, 0.8), 0 0 40px rgba(6, 182, 212, 0.05);
+  --shadow-glow: 0 0 20px rgba(6, 182, 212, 0.2), inset 0 0 15px rgba(255, 255, 255, 0.05);
+}
+
+/* ─── GLOBAL RESET & PERFORMANCE ─── */
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background-color: var(--bg-absolute);
+  color: var(--text-muted);
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Noise Texture Overlay (Awwwards Style) */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.025; /* Sutil, mas cria percepção tátil */
+  mix-blend-mode: screen;
+}
+
+/* Tipografia Elite */
+h1, h2, h3, h4, h5 {
+  font-family: 'Syne', sans-serif;
+  color: var(--text-pure);
+}
+
+/* Scrollbar Futuro */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-absolute); }
+::-webkit-scrollbar-thumb { 
+  background: rgba(255, 255, 255, 0.1); 
+  border-radius: 10px; 
+}
+::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.2); }
+
+/* ─── GRADIENT TEXT ILLUSION ─── */
+.grad-text {
+  background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.6) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.5));
+}
+
+.hero-h1 .grad-text {
+  background: linear-gradient(135deg, #ffffff 0%, var(--brand-cyan) 50%, var(--brand-blue) 100%);
+  -webkit-background-clip: text;  
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+}
+
+/* ─── NAVBAR GLASSMORPHISM (Apple Style) ─── */
+.navbar-glass {
+  background: rgba(1, 2, 6, 0.1);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border-bottom: 1px solid var(--border-subtle);
+  transition: all 0.5s var(--ease-out-expo);
+  will-change: transform, background, border-color;
+}
+
+.navbar-glass.is-scrolled {
+  background: rgba(4, 8, 20, 0.6);
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.8), inset 0 -1px 0 0 rgba(255, 255, 255, 0.05);
+}
+
+/* ─── HERO CINEMATOGRÁFICA & AMBIENT EFFECTS ─── */
+.hero-canvas {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+  perspective: 1000px;
+}
+
+/* Grid Vercel/Linear Perspective */
+.bg-grid-pattern {
+  background-size: 40px 40px;
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 100%);
+  transform: rotateX(45deg) scale(1.5) translateY(-5%);
+  transform-origin: top center;
+  animation: gridMove 20s linear infinite;
+  will-change: transform;
+}
+
+@keyframes gridMove {
+  0% { transform: rotateX(45deg) scale(1.5) translateY(0); }
+  100% { transform: rotateX(45deg) scale(1.5) translateY(40px); }
+}
+
+/* Floating Blobs (Mesh Gradients) */
+.blob {
+  position: absolute;
+  filter: blur(100px);
+  opacity: 0.4;
+  border-radius: 50%;
+  animation: floatBlob 25s infinite alternate var(--ease-in-out-poly);
+  will-change: transform;
+  mix-blend-mode: screen;
+}
+
+.blob-1 {
+  top: -10%; left: -10%; width: 60vw; height: 60vw;
+  background: radial-gradient(circle, rgba(37, 99, 235, 0.3), transparent 60%);
+}
+
+.blob-2 {
+  bottom: -20%; right: -10%; width: 50vw; height: 50vw;
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.25), transparent 60%);
+  animation-delay: -7s;
+}
+
+@keyframes floatBlob {
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(5vw, 5vh, 0) scale(1.1) rotate(5deg); }
+  100% { transform: translate3d(-5vw, 10vh, 0) scale(0.9) rotate(-5deg); }
+}
+
+/* ─── BOTÕES TECNOLOGIA ALIEN (Premium Interaction) ─── */
+.btn-primary {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--text-pure);
+  color: var(--bg-absolute);
+  border-radius: 9999px;
+  font-family: 'DM Sans', sans-serif;
+  overflow: hidden;
+  transition: transform 0.4s var(--ease-spring), box-shadow 0.4s var(--ease-out-expo);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1), 0 8px 20px rgba(255, 255, 255, 0.15);
+  will-change: transform;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%; width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+  transition: left 0.6s var(--ease-out-expo);
+  mix-blend-mode: overlay;
+}
+
+.btn-primary:hover {
+  transform: scale(1.05) translateY(-2px);
+  box-shadow: 0 0 0 1px #fff, 0 15px 30px rgba(6, 182, 212, 0.4);
+}
+
+.btn-primary:hover::before {
+  left: 100%;
+}
+
+.btn-secondary {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.02);
+  color: var(--text-pure);
+  border: 1px solid var(--border-subtle);
+  border-radius: 9999px;
+  backdrop-filter: blur(12px);
+  transition: all 0.4s var(--ease-out-expo);
+}
+
+.btn-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* ─── CARDS PREMIUM BENTO GRID (Spotlight & Depth) ─── */
+.spotlight-card {
+  position: relative;
+  background: linear-gradient(180deg, rgba(8, 13, 26, 0.6) 0%, rgba(4, 8, 20, 0.8) 100%);
+  border-radius: 1.5rem;
+  border: 1px solid var(--border-subtle);
+  overflow: hidden;
+  backdrop-filter: blur(20px);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.05), 0 4px 24px rgba(0, 0, 0, 0.5);
+  transition: transform 0.5s var(--ease-out-expo), border-color 0.5s var(--ease-out-expo), box-shadow 0.5s var(--ease-out-expo);
+  will-change: transform;
+}
+
+/* Efeito de Spotlight com CSS puro (fallback caso JS não injete mouse-x) */
+.spotlight-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.06), transparent 40%);
+  opacity: 0;
+  transition: opacity 0.6s var(--ease-fluid);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.spotlight-card:hover {
+  transform: translateY(-5px) scale(1.01);
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1), var(--shadow-premium);
+}
+
+.spotlight-card:hover::before {
+  opacity: 1;
+}
+
+.spotlight-card > * {
+  position: relative;
+  z-index: 2;
+}
+
+.icon-box {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.2), rgba(6, 182, 212, 0.05));
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.1);
+}
+
+/* ─── PORTFÓLIO 3D CINEMATIC HOVER ─── */
+.portfolio-card {
+  perspective: 1500px; /* Cria o palco 3D */
+  transform-style: preserve-3d;
+  transition: transform 0.6s var(--ease-out-expo), box-shadow 0.6s var(--ease-out-expo);
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+}
+
+.portfolio-card:hover {
+  transform: translateY(-10px);
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: var(--shadow-premium);
+}
+
+.portfolio-visual {
+  transform-style: preserve-3d;
+  transition: transform 0.8s var(--ease-out-expo);
+}
+
+.portfolio-card:hover .portfolio-visual > div:last-child {
+  /* Anima o mockup de dentro da imagem para saltar na tela */
+  transform: translateZ(30px) translateY(-5%) rotateX(2deg);
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.9), 0 0 40px rgba(6, 182, 212, 0.2);
+}
+
+/* ─── COMPONENTES DE MOCKUP (Alien UI) ─── */
+.mockup-browser {
+  background: rgba(4, 8, 20, 0.8);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  overflow: hidden;
+  backdrop-filter: blur(20px);
+  box-shadow: var(--shadow-premium);
+  transform: rotateX(5deg) rotateY(-5deg);
+  transition: transform 0.8s var(--ease-out-expo);
+}
+
+.hero-visual:hover .mockup-browser {
+  transform: rotateX(0) rotateY(0) scale(1.02);
+}
+
+.code-line {
+  background: linear-gradient(90deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+  border-radius: 4px;
+  height: 8px;
+  margin-bottom: 8px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Shimmer effect inside code lines */
+.code-line::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%; width: 50%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+  animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+  100% { left: 200%; }
+}
+
+.code-line.blue { background: rgba(37, 99, 235, 0.3); }
+.code-line.cyan { background: rgba(6, 182, 212, 0.3); }
+
+/* ─── MICRO DETALHES E TAGS ─── */
+.section-label {
+  display: inline-block;
+  padding: 8px 20px;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0) 100%);
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-pure);
+  box-shadow: inset 0 1px 1px rgba(255,255,255,0.1);
+  margin-bottom: 32px;
+}
+
+.tag-pill {
+  padding: 8px 20px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-subtle);
+  font-size: 13px;
+  color: var(--text-muted);
+  transition: all 0.4s var(--ease-out-expo);
+  backdrop-filter: blur(8px);
+}
+
+.tag-pill:hover {
+  background: rgba(6, 182, 212, 0.1);
+  border-color: rgba(6, 182, 212, 0.3);
+  color: var(--text-pure);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(6, 182, 212, 0.15);
+}
+
+/* ─── UTILITÁRIOS ─── */
+.perspective-1200 { perspective: 1200px; transform-style: preserve-3d; }
+.section-divider { border-color: rgba(255, 255, 255, 0.03); border-top-width: 1px; }
+
+/* ─── MOBILE PREMIUM EXPERIENCE ─── */
+@media (max-width: 768px) {
+  .hero-canvas { perspective: none; }
+  .bg-grid-pattern { animation: none; transform: translateY(-5%); }
+  .mockup-browser { transform: none; }
+  .hero-visual:hover .mockup-browser { transform: none; }
+  .portfolio-card:hover .portfolio-visual > div:last-child { transform: translateY(-2%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+/* ─── INFINITE TECH MARQUEE (Vercel Style) ─── */
+.tech-marquee-container {
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  width: 100%;
+  /* O segredo do design premium: fade nas bordas laterais */
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.tech-marquee-track {
+  display: inline-flex;
+  align-items: center;
+  gap: 4rem; /* Espaçamento entre as tecnologias */
+  /* Ajuste os 20s para mais rápido ou mais devagar */
+  animation: scrollMarquee 25s linear infinite; 
+  will-change: transform;
+}
+
+/* Pausa a animação ao passar o mouse */
+.tech-marquee-container:hover .tech-marquee-track {
+  animation-play-state: paused;
+}
+
+/* Move exatamente 50% (exige que o HTML tenha 2 grupos idênticos) */
+@keyframes scrollMarquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); } 
+}
+
+/* Estilo de cada item */
+.tech-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: rgba(255, 255, 255, 0.3);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: default;
+}
+
+.tech-item:hover {
+  color: #fff;
+  transform: scale(1.05);
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+}
+
+/* Opcional: tira o ícone do Lucide e deixa ele combinando com a cor */
+.tech-item svg {
+  width: 18px;
+  height: 18px;
+  opacity: 0.5;
+  transition: opacity 0.4s ease;
+}
+.tech-item:hover svg {
+  opacity: 1;
+}

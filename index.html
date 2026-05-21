@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark antialiased selection:bg-cyan-500/30 selection:text-cyan-200">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>PURE LAYOUT | Experiências Digitais de Elite</title>
+    <meta name="description" content="Ecossistemas digitais de alta conversão, design cinematográfico e performance extrema.">
+    <meta name="theme-color" content="#010308">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script src="tailwind.config.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="bg-[#010308] text-slate-300 overflow-x-hidden">
+
+    <div class="pointer-events-none fixed inset-0 z-[100] h-full w-full opacity-[0.03] mix-blend-screen bg-noise-pattern"></div>
+
+    <div id="custom-cursor" class="hidden md:block pointer-events-none fixed left-0 top-0 z-[9999] h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white mix-blend-difference transition-transform duration-100 ease-out"></div>
+    <div id="cursor-follower" class="hidden md:block pointer-events-none fixed left-0 top-0 z-[9998] h-12 w-12 -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/20 transition-transform duration-300 ease-out"></div>
+
+    <header class="fixed left-0 right-0 top-6 z-50 mx-auto max-w-5xl px-6 transition-all duration-500" id="navbar">
+        <div class="nav-glassmorphism flex h-16 items-center justify-between rounded-full border border-white/5 bg-white/[0.02] px-6 backdrop-blur-2xl shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
+            
+            <a href="#hero" class="group flex items-center gap-3" data-magnetic>
+                <div class="relative flex h-8 w-8 items-center justify-center overflow-hidden rounded-lg border border-white/10 bg-[#050A15]">
+                    <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/20 to-blue-600/20 opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
+                    <div class="absolute -left-1/2 -top-1/2 h-full w-full animate-[spin_4s_linear_infinite] bg-gradient-to-r from-transparent via-cyan-400/30 to-transparent"></div>
+                    <div class="absolute inset-[1px] rounded-md bg-[#010308]"></div>
+                    <img src="logo.svg" alt="Pure Layout Logo" class="relative z-10 h-8 w-8 text-white">
+                </div>
+                <span class="font-syne text-sm font-bold tracking-widest text-white">PURE<span class="text-cyan-400 text-opacity-80">LAYOUT</span></span>
+            </a>
+
+            <nav class="hidden md:flex items-center gap-8 font-inter text-[13px] font-medium tracking-wide text-white/50">
+                <a href="#diferenciais" class="nav-link hover:text-white transition-colors duration-300 relative">
+                    <span>Vantagens</span>
+                </a>
+                <a href="#portfolio" class="nav-link hover:text-white transition-colors duration-300 relative">
+                    <span>sites publicados</span>
+                </a>
+                <a href="#processo" class="nav-link hover:text-white transition-colors duration-300 relative">
+                    <span>processos</span>
+                </a>
+            </nav>
+
+            <div class="flex items-center gap-4">
+                <a href="https://wa.me/5583996668601" target="_blank" data-magnetic class="group relative hidden md:inline-flex h-10 items-center justify-center overflow-hidden rounded-full border border-white/10 bg-white/[0.03] px-6 font-inter text-[13px] font-semibold text-white transition-all hover:bg-white/[0.08] hover:border-white/20">
+                    <span class="relative z-10 flex items-center gap-2">
+                        Iniciar Projeto <i data-lucide="arrow-right" class="h-3.5 w-3.5 transition-transform group-hover:translate-x-1"></i>
+                    </span>
+                    <div class="absolute inset-0 -z-10 bg-gradient-to-r from-cyan-500/10 to-blue-600/10 opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
+                </a>
+                
+                <button class="md:hidden text-white/70 hover:text-white" id="menu-toggle">
+                    <i data-lucide="menu" class="h-6 w-6"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div id="smooth-wrapper">
+        <div id="smooth-content">
+
+            <section id="hero" class="relative min-h-[110vh] w-full overflow-hidden flex items-center pt-20">
+                
+                <div class="absolute inset-0 z-0">
+                    <div class="absolute top-[-20%] left-1/2 -translate-x-1/2 w-[800px] h-[600px] rounded-[100%] bg-blue-900/20 blur-[120px]"></div>
+                    <div class="absolute top-[10%] left-[20%] w-[500px] h-[500px] rounded-[100%] bg-cyan-600/10 blur-[150px]"></div>
+                    
+                    <div class="hero-grid absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
+                </div>
+
+                <div class="relative z-10 mx-auto w-full max-w-7xl px-6 lg:px-8 flex flex-col items-center text-center">
+                    
+                    <div class="reveal-up inline-flex items-center gap-2 rounded-full border border-white/5 bg-white/[0.02] px-4 py-1.5 backdrop-blur-md mb-8">
+                        <span class="relative flex h-2 w-2">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
+                        </span>
+                        <span class="font-jetbrains text-[11px] font-medium tracking-[0.2em] text-white/70 uppercase">High-End Digital Studio</span>
+                    </div>
+
+                    <h1 class="reveal-up font-syne text-[clamp(3rem,8vw,7.5rem)] font-extrabold leading-[0.95] tracking-tight text-white mb-8 select-none">
+                        <span class="block text-transparent bg-clip-text bg-gradient-to-b from-white via-white/90 to-white/30">
+                            Construímos o
+                        </span>
+                        <span class="block relative">
+                            <span class="absolute -inset-1 blur-2xl bg-gradient-to-r from-cyan-500/20 via-blue-500/20 to-purple-500/20 opacity-50"></span>
+                            <span class="relative text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-400">Padrão Ouro</span>
+                        </span>
+                        <span class="block text-transparent bg-clip-text bg-gradient-to-b from-white/90 to-white/20">
+                            do Design Web.
+                        </span>
+                    </h1>
+
+                    <p class="reveal-up font-inter text-[clamp(1rem,1.5vw,1.25rem)] font-light leading-relaxed text-white/50 max-w-2xl mb-12">
+                        Não fazemos apenas sites. Desenvolvemos <strong class="font-medium text-white/80">ecossistemas digitais</strong> de alta conversão, com estética cinematográfica e performance nível software bilionário.
+                    </p>
+
+                    <div class="reveal-up flex flex-col sm:flex-row items-center gap-6">
+                        <a href="https://wa.me/5583996668601" data-magnetic class="group relative flex h-14 items-center justify-center gap-3 overflow-hidden rounded-full bg-white px-8 font-inter text-[14px] font-bold text-black transition-transform hover:scale-105">
+                            <span class="relative z-10 flex items-center gap-2">
+                                Iniciar Experiência
+                                <svg class="h-4 w-4 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                            </span>
+                            <div class="absolute inset-0 z-0 bg-gradient-to-r from-cyan-100 to-white opacity-0 transition-opacity group-hover:opacity-100"></div>
+                        </a>
+                        
+                        <a href="#portfolio" class="group flex items-center gap-3 font-inter text-[13px] font-medium text-white/60 transition-colors hover:text-white">
+                            <div class="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/[0.02] backdrop-blur-sm transition-all group-hover:border-white/30 group-hover:bg-white/[0.05]">
+                                <i data-lucide="play" class="h-4 w-4 fill-white/20"></i>
+                            </div>
+                            Assistir Showreel
+                        </a>
+                    </div>
+                </div>
+
+               <div class="hero-3d-wrapper absolute top-[70%] left-1/2 w-[1200px] max-w-[95vw] -translate-x-1/2 perspective-[2000px] z-20">
+    <div class="hero-3d-element relative w-full rounded-2xl border border-white/10 bg-[#02040A]/60 p-2 shadow-[0_0_80px_rgba(6,182,212,0.15)] backdrop-blur-2xl transition-all duration-1000 ease-out transform-gpu rotate-x-[15deg] rotate-y-[-5deg] scale-95 hover:rotate-x-0 hover:rotate-y-0 hover:scale-100 group">
+        
+        <div class="absolute inset-0 rounded-2xl pointer-events-none shadow-[inset_0_1px_1px_rgba(255,255,255,0.15)]"></div>
+        
+        <div class="flex h-12 items-center border-b border-white/5 bg-black/40 px-4 rounded-t-xl relative z-10">
+            <div class="flex gap-2 group/dots">
+                <div class="h-2.5 w-2.5 rounded-full bg-white/20 transition-colors duration-300 group-hover/dots:bg-red-500 shadow-[0_0_10px_rgba(239,68,68,0)] group-hover/dots:shadow-[0_0_10px_rgba(239,68,68,0.5)]"></div>
+                <div class="h-2.5 w-2.5 rounded-full bg-white/20 transition-colors duration-300 group-hover/dots:bg-yellow-500 shadow-[0_0_10px_rgba(234,179,8,0)] group-hover/dots:shadow-[0_0_10px_rgba(234,179,8,0.5)]"></div>
+                <div class="h-2.5 w-2.5 rounded-full bg-white/20 transition-colors duration-300 group-hover/dots:bg-green-500 shadow-[0_0_10px_rgba(34,197,94,0)] group-hover/dots:shadow-[0_0_10px_rgba(34,197,94,0.5)]"></div>
+            </div>
+            <div class="mx-auto flex h-7 w-80 items-center justify-center gap-2 rounded-md bg-white/[0.02] border border-white/[0.05] shadow-[inset_0_1px_2px_rgba(0,0,0,0.5)] text-[11px] font-mono text-white/40">
+                <i data-lucide="lock" class="w-3 h-3 text-cyan-500/70"></i>
+                <span class="text-white/70">admin.purelayout.dev</span>
+                <span class="ml-2 rounded-[3px] bg-white/10 px-1.5 py-0.5 text-[8px] tracking-wider text-white/60">BETA</span>
+            </div>
+            <div class="w-12"></div>
+        </div>
+        
+        <div class="relative h-[440px] w-full overflow-hidden rounded-b-xl bg-gradient-to-b from-[#02040A] to-[#010205] p-6">
+            
+            <div class="absolute -top-24 -right-24 w-96 h-96 bg-cyan-500/10 blur-[100px] rounded-full pointer-events-none"></div>
+            <div class="absolute bottom-0 left-0 w-64 h-64 bg-blue-600/10 blur-[80px] rounded-full pointer-events-none"></div>
+
+            <div class="flex h-full gap-6 relative z-10">
+                <div class="w-48 flex-shrink-0 flex flex-col gap-2 border-r border-white/5 pr-6">
+                    <div class="flex items-center gap-3 mb-4 p-2 rounded-xl bg-gradient-to-br from-white/[0.05] to-transparent border border-white/[0.02]">
+                        <div class="h-8 w-8 rounded-full bg-cyan-500/20 border border-cyan-500/30 flex items-center justify-center">
+                            <i data-lucide="zap" class="w-4 h-4 text-cyan-400"></i>
+                        </div>
+                        <div class="flex flex-col">
+                            <span class="text-xs text-white font-medium">Workspace</span>
+                            <span class="text-[9px] text-white/40 font-mono">ID: 0x8F2A</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-medium cursor-default">
+                        <i data-lucide="layout-dashboard" class="w-4 h-4"></i> Overview
+                    </div>
+                    <div class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-white/40 text-xs font-medium cursor-default">
+                        <i data-lucide="bar-chart-3" class="w-4 h-4"></i> Analytics
+                    </div>
+                    <div class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-white/40 text-xs font-medium cursor-default">
+                        <i data-lucide="users" class="w-4 h-4"></i> Audience
+                    </div>
+                    <div class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-white/40 text-xs font-medium cursor-default">
+                        <i data-lucide="settings" class="w-4 h-4"></i> Settings
+                    </div>
+                </div>
+
+                <div class="flex-1 flex flex-col gap-6">
+                    
+                    <div class="flex gap-4">
+                        <div class="h-28 flex-1 rounded-xl bg-white/[0.02] border border-white/[0.05] p-4 relative overflow-hidden flex flex-col justify-between shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)]">
+                            <div class="absolute inset-0 bg-gradient-to-br from-green-500/10 to-transparent opacity-50"></div>
+                            <div class="flex items-center justify-between relative z-10">
+                                <span class="text-[10px] uppercase tracking-widest text-white/50 font-mono">Performance</span>
+                                <i data-lucide="activity" class="w-4 h-4 text-green-400"></i>
+                            </div>
+                            <div class="flex items-baseline gap-2 relative z-10">
+                                <span class="text-3xl font-syne text-white font-bold">100</span>
+                                <span class="text-xs text-green-400">+2.4%</span>
+                            </div>
+                        </div>
+                        
+                        <div class="h-28 flex-1 rounded-xl bg-white/[0.02] border border-white/[0.05] p-4 relative flex flex-col justify-between shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)]">
+                            <div class="flex items-center justify-between">
+                                <span class="text-[10px] uppercase tracking-widest text-white/50 font-mono">Edge Latency</span>
+                                <i data-lucide="globe" class="w-4 h-4 text-cyan-400"></i>
+                            </div>
+                            <div class="flex flex-col">
+                                <span class="text-3xl font-syne text-cyan-400 font-bold">12<span class="text-lg text-cyan-400/50">ms</span></span>
+                                <div class="h-1 w-full bg-white/5 rounded-full mt-2 overflow-hidden">
+                                    <div class="h-full bg-cyan-400 w-1/4 rounded-full"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="h-28 flex-1 rounded-xl bg-white/[0.02] border border-white/[0.05] p-4 relative flex flex-col justify-between shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)]">
+                            <div class="flex items-center justify-between">
+                                <span class="text-[10px] uppercase tracking-widest text-white/50 font-mono">System Uptime</span>
+                                <div class="relative flex h-2.5 w-2.5">
+                                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                                  <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                                </div>
+                            </div>
+                            <div class="flex items-baseline gap-2">
+                                <span class="text-3xl font-syne text-white font-bold">99.9<span class="text-lg text-white/50">%</span></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex-1 rounded-xl bg-white/[0.01] border border-white/[0.03] relative overflow-hidden p-4 flex flex-col justify-end shadow-[inset_0_1px_1px_rgba(255,255,255,0.02)]">
+                        <div class="absolute top-4 left-4 flex items-center gap-2">
+                            <div class="h-2 w-2 rounded-full bg-cyan-500"></div>
+                            <span class="text-xs text-white/60 font-medium">Tráfego Global (24h)</span>
+                        </div>
+                        
+                        <div class="absolute inset-0 flex flex-col justify-between pt-12 pb-4 px-4 pointer-events-none opacity-20">
+                            <div class="w-full border-t border-dashed border-white/20"></div>
+                            <div class="w-full border-t border-dashed border-white/20"></div>
+                            <div class="w-full border-t border-dashed border-white/20"></div>
+                            <div class="w-full border-t border-dashed border-white/20"></div>
+                        </div>
+
+                        <svg class="relative w-full h-[70%] text-cyan-500/20" preserveAspectRatio="none" viewBox="0 0 100 100">
+                            <defs>
+                                <linearGradient id="chartGlow" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0%" stop-color="#22d3ee" stop-opacity="0.3"></stop>
+                                    <stop offset="100%" stop-color="#22d3ee" stop-opacity="0"></stop>
+                                </linearGradient>
+                            </defs>
+                            <path d="M0,90 Q10,70 20,80 T40,50 T60,60 T80,30 T100,40 L100,100 L0,100 Z" fill="url(#chartGlow)" />
+                            <path d="M0,90 Q10,70 20,80 T40,50 T60,60 T80,30 T100,40" fill="none" stroke="#22d3ee" stroke-width="1.5" stroke-linecap="round" />
+                        </svg>
+
+                        <div class="absolute right-[4%] top-[45%] h-3 w-3 rounded-full bg-white shadow-[0_0_15px_rgba(34,211,238,1)] border-2 border-cyan-400 z-10"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="absolute -right-6 top-16 h-auto w-56 rounded-xl border border-white/10 bg-white/5 backdrop-blur-2xl shadow-[0_20px_40px_rgba(0,0,0,0.5)] p-3 transform translate-z-[60px] animate-[float_4s_ease-in-out_infinite] group-hover:border-cyan-500/30 transition-colors z-30">
+                <div class="flex items-center gap-3 mb-2">
+                    <div class="h-6 w-6 rounded-full bg-emerald-500/20 flex items-center justify-center border border-emerald-500/30">
+                        <i data-lucide="check" class="w-3 h-3 text-emerald-400"></i>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-[10px] text-white font-medium">Deploy Success</span>
+                        <span class="text-[8px] text-white/40 font-mono">Just now</span>
+                    </div>
+                </div>
+                <div class="h-1 w-full bg-white/5 rounded-full overflow-hidden">
+                    <div class="h-full bg-emerald-400 w-full rounded-full"></div>
+                </div>
+            </div>
+
+            <div class="absolute -left-8 bottom-12 h-auto w-48 rounded-xl border border-white/10 bg-[#050A15]/80 backdrop-blur-2xl shadow-[0_20px_40px_rgba(0,0,0,0.5)] p-3 transform translate-z-[40px] animate-[float_5s_ease-in-out_infinite_reverse] z-30">
+                <div class="flex items-center gap-3">
+                    <div class="h-8 w-8 rounded-lg bg-indigo-500/20 flex items-center justify-center border border-indigo-500/30">
+                        <i data-lucide="shield-check" class="w-4 h-4 text-indigo-400"></i>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-xs text-white font-medium">Edge Secure</span>
+                        <span class="text-[9px] text-indigo-400 font-mono">WAF Active</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+                <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50 z-30">
+                    <span class="font-jetbrains text-[9px] uppercase tracking-widest text-white/50">Scroll para explorar</span>
+                    <div class="h-10 w-[1px] bg-gradient-to-b from-white/30 to-transparent"></div>
+                </div>
+            </section>
+
+            <section class="relative z-20 border-y border-white/[0.02] bg-[#02040A]/50 py-10 backdrop-blur-md">
+                <div class="w-full border-y border-white/[0.05] bg-white/[0.01] py-6 my-20 gs-reveal">
+    
+                <div class="text-center mb-6">
+                    <span class="font-mono text-[10px] tracking-[0.2em] text-cyan-500 uppercase">Our Tech Stack / Premium Only</span>
+                </div>
+
+                <div class="tech-marquee-container">
+                    <div class="tech-marquee-track">
+                        
+                        <div class="tech-item"><i data-lucide="triangle"></i> Github</div>
+                        <div class="tech-item"><i data-lucide="move"></i> GSAP</div>
+                        <div class="tech-item"><i data-lucide="box"></i> HTML5</div>
+                        <div class="tech-item"><i data-lucide="wind"></i> Tailwind CSS</div>
+                        <div class="tech-item"><i data-lucide="atom"></i> React</div>
+                        <div class="tech-item"><i data-lucide="zap"></i> Framer Motion</div>
+                        <div class="tech-item"><i data-lucide="database"></i> Supabase</div>
+                        
+                        <div class="tech-item"><i data-lucide="triangle"></i> Github</div>
+                        <div class="tech-item"><i data-lucide="move"></i> GSAP</div>
+                        <div class="tech-item"><i data-lucide="box"></i> HTML5</div>
+                        <div class="tech-item"><i data-lucide="wind"></i> Tailwind CSS</div>
+                        <div class="tech-item"><i data-lucide="atom"></i> React</div>
+                        <div class="tech-item"><i data-lucide="zap"></i> Framer Motion</div>
+                        <div class="tech-item"><i data-lucide="database"></i> Supabase</div>
+
+                    </div>
+        </div>
+            </section>
+
+            <section class="relative py-40 px-6 max-w-5xl mx-auto flex items-center justify-center text-center">
+                <div class="statement-text-wrapper perspective-[1000px]">
+                    <h2 class="font-syne text-[clamp(2rem,5vw,4rem)] font-bold leading-[1.1] text-white/90">
+                        O design medíocre está <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-orange-500">matando suas vendas</span>.<br>
+                        Nós injetamos <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">engenharia de percepção</span> para transformar sua marca em uma autoridade inquestionável.
+                    </h2>
+                </div>
+            </section>
+
+            <section id="diferenciais" class="relative py-32 px-6">
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-600/5 blur-[200px] rounded-full pointer-events-none"></div>
+
+                <div class="mx-auto max-w-7xl relative z-10">
+                    <div class="mb-20">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="h-[1px] w-8 bg-cyan-500/50"></div>
+                            <span class="font-jetbrains text-[10px] uppercase tracking-[0.2em] text-cyan-400">Arquitetura da Excelência</span>
+                        </div>
+                        <h2 class="font-syne text-[clamp(2.5rem,5vw,4.5rem)] font-bold leading-none text-white tracking-tight">
+                            Arquitetura <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-white/50 to-white/10">sofisticada</span>
+                        </h2>
+                    </div>
+
+                   <div class="bento-card group relative md:col-span-2 md:row-span-2 rounded-3xl border border-white/10 bg-[#02040A] p-8 md:p-10 overflow-hidden transition-all duration-700 hover:border-cyan-500/30 hover:bg-[#030612] hover:shadow-[0_0_40px_rgba(6,182,212,0.1)]">
+    
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-50 group-hover:opacity-100 transition-opacity duration-700"></div>
+
+    <div class="relative z-10 flex flex-col h-full justify-between">
+        
+        <div class="max-w-md relative z-20">
+            <div class="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.03] text-white shadow-inner backdrop-blur-md group-hover:border-cyan-500/30 group-hover:text-cyan-400 transition-colors duration-500">
+                <i data-lucide="aperture" class="h-6 w-6"></i>
+            </div>
+            <h3 class="font-syne text-3xl font-bold text-white mb-4 tracking-tight">Engenharia de <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Percepção</span></h3>
+            <p class="font-inter text-[15px] text-white/50 leading-relaxed">Neurodesign aplicado. Cada sombra, espaçamento e micro-interação é matematicamente posicionado para reter atenção e gerar autoridade instantânea.</p>
+        </div>
+        
+        <div class="absolute -bottom-16 -right-16 md:-bottom-12 md:-right-4 h-[300px] w-[450px] perspective-[1500px] pointer-events-none">
+            
+            <div class="relative w-full h-full transform-style-3d transition-transform duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] rotate-x-[15deg] rotate-y-[-10deg] scale-95 group-hover:rotate-x-[25deg] group-hover:rotate-y-[-20deg] group-hover:-translate-x-8 group-hover:-translate-y-4">
+                
+                <div class="absolute bottom-10 right-10 w-72 h-48 rounded-xl border border-white/10 bg-[#050A15]/90 backdrop-blur-xl shadow-2xl transform translate-z-0 transition-transform duration-1000 group-hover:translate-z-[20px] overflow-hidden">
+                    <div class="flex h-8 border-b border-white/5 bg-white/[0.02] items-center px-3 gap-1.5">
+                        <div class="w-2 h-2 rounded-full bg-white/20"></div>
+                        <div class="w-2 h-2 rounded-full bg-white/20"></div>
+                    </div>
+                    <div class="p-4 space-y-3">
+                        <div class="w-full h-4 bg-white/[0.03] rounded-md"></div>
+                        <div class="w-3/4 h-4 bg-white/[0.03] rounded-md"></div>
+                        <div class="w-1/2 h-4 bg-white/[0.03] rounded-md"></div>
+                    </div>
+                </div>
+
+                <div class="absolute bottom-20 right-28 w-60 h-32 rounded-xl border border-white/20 bg-gradient-to-br from-white/[0.08] to-transparent backdrop-blur-2xl shadow-[0_20px_40px_rgba(0,0,0,0.5)] transform translate-z-[40px] transition-transform duration-1000 group-hover:translate-z-[80px] p-5 flex flex-col gap-4">
+                    <div class="flex items-center gap-3">
+                        <div class="h-8 w-8 rounded-lg bg-cyan-500/20 flex items-center justify-center border border-cyan-500/30">
+                            <i data-lucide="image" class="w-4 h-4 text-cyan-400"></i>
+                        </div>
+                        <div class="flex-1 space-y-1.5">
+                            <div class="w-full h-2 bg-white/20 rounded-full"></div>
+                            <div class="w-2/3 h-2 bg-white/10 rounded-full"></div>
+                        </div>
+                    </div>
+                    <div class="w-full h-12 rounded-lg bg-white/5 border border-white/5"></div>
+                </div>
+
+                <div class="absolute bottom-28 right-16 h-16 w-16 rounded-full bg-cyan-500 border border-cyan-300 shadow-[0_0_40px_rgba(6,182,212,0.6)] transform translate-z-[80px] transition-transform duration-1000 group-hover:translate-z-[160px] flex items-center justify-center text-[#010308]">
+                    <i data-lucide="mouse-pointer-2" class="w-6 h-6"></i>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="bento-card group relative md:col-span-1 md:row-span-2 rounded-3xl border border-white/10 bg-[#02040A] p-8 overflow-hidden transition-all duration-700 hover:border-blue-500/30 hover:bg-[#030612] hover:shadow-[0_0_40px_rgba(59,130,246,0.1)] flex flex-col">
+    
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(59,130,246,0.08),transparent_50%)] opacity-50 group-hover:opacity-100 transition-opacity duration-700"></div>
+
+    <div class="relative z-10 flex flex-col h-full">
+        <div class="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-blue-500/20 bg-blue-500/10 text-blue-400 shadow-inner backdrop-blur-md group-hover:scale-110 transition-transform duration-500">
+            <i data-lucide="zap" class="h-6 w-6"></i>
+        </div>
+        <h3 class="font-syne text-2xl font-bold text-white mb-3 tracking-tight">Velocidade Extrema</h3>
+        <p class="font-inter text-sm text-white/50 mb-10 leading-relaxed">Código serverless na Edge. Carregamento instantâneo que não dá chance para o cliente desistir.</p>
+        
+        <div class="mt-auto flex flex-col gap-8">
+            
+            <div class="flex items-center justify-center relative">
+                <svg class="w-32 h-32 transform -rotate-90">
+                    <circle cx="64" cy="64" r="50" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="6"></circle>
+                    <circle cx="64" cy="64" r="50" fill="none" stroke="#22c55e" stroke-width="6" stroke-dasharray="314" stroke-dashoffset="314" class="transition-all duration-[1.5s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:stroke-dashoffset-0" stroke-linecap="round"></circle>
+                </svg>
+                
+                <div class="absolute inset-0 flex flex-col items-center justify-center">
+                    <span class="text-4xl font-syne font-bold text-green-400 drop-shadow-[0_0_15px_rgba(34,197,94,0.4)] tracking-tighter">100</span>
+                </div>
+            </div>
+
+            <div class="space-y-5">
+                <div>
+                    <div class="flex items-center justify-between font-mono text-[10px] text-white/40 mb-2 uppercase tracking-widest">
+                        <span>Performance</span>
+                        <span class="text-green-400 group-hover:text-green-300 transition-colors delay-300">100</span>
+                    </div>
+                    <div class="h-1 w-full bg-white/5 rounded-full overflow-hidden">
+                        <div class="h-full bg-green-400 w-0 group-hover:w-full transition-all duration-1000 delay-100 rounded-full shadow-[0_0_10px_rgba(34,197,94,0.5)]"></div>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="flex items-center justify-between font-mono text-[10px] text-white/40 mb-2 uppercase tracking-widest">
+                        <span>Acessibilidade</span>
+                        <span class="text-green-400 group-hover:text-green-300 transition-colors delay-500">100</span>
+                    </div>
+                    <div class="h-1 w-full bg-white/5 rounded-full overflow-hidden">
+                        <div class="h-full bg-green-400 w-0 group-hover:w-full transition-all duration-1000 delay-200 rounded-full shadow-[0_0_10px_rgba(34,197,94,0.5)]"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+                        <div class="bento-card group relative md:col-span-1 rounded-3xl border border-white/10 bg-[#02040A] p-8 overflow-hidden transition-all duration-700 hover:border-cyan-500/30 hover:bg-[#030612] hover:shadow-[0_0_40px_rgba(6,182,212,0.1)] flex flex-col justify-between">
+    
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(6,182,212,0.08),transparent_50%)] opacity-50 group-hover:opacity-100 transition-opacity duration-700"></div>
+
+    <div class="relative z-10">
+        <div class="flex justify-between items-start mb-5">
+            <div class="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-cyan-500/20 bg-cyan-500/10 text-cyan-400 backdrop-blur-md group-hover:scale-110 transition-transform duration-500">
+                <i data-lucide="trending-up" class="h-6 w-6"></i>
+            </div>
+            
+            <span class="inline-flex items-center gap-1.5 rounded-full bg-green-500/10 px-3 py-1 text-[11px] font-mono text-green-400 border border-green-500/20 opacity-0 transform translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 ease-[cubic-bezier(0.175,0.885,0.32,1.275)]">
+                <i data-lucide="arrow-up-right" class="w-3 h-3"></i> 342%
+            </span>
+        </div>
+        
+        <h3 class="font-syne text-xl font-bold text-white mb-2">Máquina de Conversão</h3>
+        <p class="font-inter text-[13px] text-white/50 mb-8">Arquitetura de persuasão. Cada bloco é um argumento silencioso vendendo sua autoridade.</p>
+    </div>
+
+    <div class="relative h-24 w-full mt-auto rounded-xl border border-white/5 bg-white/[0.02] overflow-hidden flex items-end">
+        <div class="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:12px_12px]"></div>
+        
+        <svg class="absolute bottom-0 left-0 w-full h-[90%] drop-shadow-[0_0_8px_rgba(6,182,212,0.8)] z-10" preserveAspectRatio="none" viewBox="0 0 100 100">
+            <path d="M0,90 Q20,80 30,50 T70,40 T100,10" fill="none" stroke="#22d3ee" stroke-width="2.5" stroke-dasharray="300" stroke-dashoffset="300" class="transition-all duration-[1.5s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:stroke-dashoffset-0" stroke-linecap="round" />
+        </svg>
+
+        <svg class="absolute bottom-0 left-0 w-full h-[90%]" preserveAspectRatio="none" viewBox="0 0 100 100">
+            <defs>
+                <linearGradient id="chartGradient" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#22d3ee" stop-opacity="0.4"/>
+                    <stop offset="100%" stop-color="#22d3ee" stop-opacity="0"/>
+                </linearGradient>
+            </defs>
+            <path d="M0,90 Q20,80 30,50 T70,40 T100,10 L100,100 L0,100 Z" fill="url(#chartGradient)" class="opacity-0 group-hover:opacity-100 transition-opacity duration-1000 delay-200" />
+        </svg>
+    </div>
+</div>
+
+<div class="bento-card group relative md:col-span-1 rounded-3xl border border-white/10 bg-[#02040A] p-8 overflow-hidden transition-all duration-700 hover:border-purple-500/30 hover:bg-[#030612] hover:shadow-[0_0_40px_rgba(168,85,247,0.1)] flex flex-col justify-between">
+    
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(168,85,247,0.08),transparent_50%)] opacity-50 group-hover:opacity-100 transition-opacity duration-700"></div>
+
+    <div class="relative z-10">
+        <div class="flex justify-between items-start mb-5">
+            <div class="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-purple-500/20 bg-purple-500/10 text-purple-400 backdrop-blur-md group-hover:rotate-[15deg] transition-transform duration-500 ease-[cubic-bezier(0.175,0.885,0.32,1.275)]">
+                <i data-lucide="waves" class="h-6 w-6"></i>
+            </div>
+            
+            <span class="inline-flex items-center rounded-full bg-white/5 px-3 py-1 text-[10px] font-mono text-white/50 border border-white/10 group-hover:border-purple-500/30 group-hover:text-purple-400 transition-colors duration-500">
+                60 FPS
+            </span>
+        </div>
+        
+        <h3 class="font-syne text-xl font-bold text-white mb-2">Motion Fluid</h3>
+        <p class="font-inter text-[13px] text-white/50">Física real, scroll amanteigado e micro-interações que encantam.</p>
+    </div>
+
+    <div class="relative h-28 w-full mt-8 flex items-end justify-center perspective-[1500px]">
+        <div class="relative w-40 h-20 transform-style-3d group-hover:-translate-y-4 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]">
+            
+            <div class="absolute inset-0 rounded-xl border border-white/5 bg-[#050A15] shadow-lg transform transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:rotate-x-[40deg] group-hover:-translate-y-6 group-hover:scale-[0.8] opacity-30"></div>
+            
+            <div class="absolute inset-0 rounded-xl border border-white/10 bg-[#0A1020] shadow-lg transform transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:rotate-x-[25deg] group-hover:-translate-y-3 group-hover:scale-[0.9] opacity-70"></div>
+            
+            <div class="absolute inset-0 rounded-xl border border-purple-500/40 bg-gradient-to-br from-[#120B21] to-[#0A1020] shadow-[0_15px_30px_rgba(0,0,0,0.5)] transform transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:rotate-x-[10deg] flex flex-col items-center justify-center overflow-hidden">
+                
+                <div class="w-16 h-1.5 rounded-full bg-purple-500/30 mb-2"></div>
+                <div class="w-10 h-1.5 rounded-full bg-white/10"></div>
+                
+                <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-[1.5s] ease-in-out delay-100"></div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+            <section id="portfolio" class="relative py-40">
+                <div class="mx-auto max-w-7xl px-6">
+                    <div class="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8">
+                        <div>
+                            <span class="font-jetbrains text-[10px] uppercase tracking-[0.2em] text-cyan-400 block mb-4">Selected Work</span>
+                            <h2 class="font-syne text-[clamp(2.5rem,4vw,4rem)] font-bold leading-[1.1] text-white tracking-tight">
+                                Cases que redefinem <br>o mercado.
+                            </h2>
+                        </div>
+                        <a href="https://wa.me/5583996668601" class="group flex items-center gap-2 font-inter text-sm font-semibold text-white transition-all hover:text-cyan-400">
+                            Discutir um projeto <i data-lucide="arrow-up-right" class="h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"></i>
+                        </a>
+                    </div>
+
+                    <div class="flex flex-col gap-32">
+                        
+                        <div class="portfolio-item group relative flex flex-col lg:flex-row gap-12 items-center">
+                            <div class="relative w-full lg:w-[65%] aspect-[16/10] rounded-3xl overflow-hidden bg-[#050A15] border border-white/5">
+                                <div class="absolute inset-0 bg-gradient-to-t from-[#010308] via-transparent to-transparent z-10 opacity-60"></div>
+                                
+                                <div class="absolute inset-4 md:inset-8 rounded-xl bg-[#0A1020] border border-white/10 overflow-hidden shadow-2xl transform transition-transform duration-1000 group-hover:scale-105 group-hover:-rotate-1">
+                                    <div class="w-full h-8 bg-[#050A15] border-b border-white/5 flex items-center px-4 gap-2">
+                                        <div class="w-2.5 h-2.5 rounded-full bg-white/10"></div>
+                                        <div class="w-2.5 h-2.5 rounded-full bg-white/10"></div>
+                                        <div class="w-2.5 h-2.5 rounded-full bg-white/10"></div>
+                                    </div>
+                                    <div class="p-8 w-full h-full relative overflow-hidden">
+                                        <div class="absolute top-0 right-0 w-64 h-64 bg-blue-600/20 blur-[80px]"></div>
+                                        <div class="h-8 w-3/4 rounded bg-white/10 mb-6"></div>
+                                        <div class="h-4 w-1/2 rounded bg-white/5 mb-3"></div>
+                                        <div class="h-4 w-2/3 rounded bg-white/5 mb-10"></div>
+                                        <div class="flex gap-4">
+                                            <div class="h-32 w-1/3 rounded-lg bg-white/5 border border-white/10"></div>
+                                            <div class="h-32 w-1/3 rounded-lg bg-white/5 border border-white/10"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="absolute inset-0 z-20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-black/20 backdrop-blur-[2px]">
+                                    <a href="http://www.catalisadordevendas.com.br" target="_blank" class="flex h-16 w-16 items-center justify-center rounded-full bg-white text-black transform scale-50 group-hover:scale-100 transition-transform duration-500 delay-100">
+                                        <i data-lucide="arrow-up-right" class="h-6 w-6"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <div class="w-full lg:w-[35%] flex flex-col justify-center">
+                                <div class="flex gap-2 mb-6">
+                                    <span class="rounded-full border border-white/10 px-3 py-1 font-jetbrains text-[10px] text-white/50">Landing Page</span>
+                                    <span class="rounded-full border border-white/10 px-3 py-1 font-jetbrains text-[10px] text-white/50">High Conversion</span>
+                                </div>
+                                <h3 class="font-syne text-3xl font-bold text-white mb-4">Catalisador de Vendas</h3>
+                                <p class="font-inter text-white/50 text-[15px] leading-relaxed mb-8">
+                                    Uma máquina de captura de leads. Design focado em guiar o olhar do usuário direto para a ação, utilizando princípios de neurociência e contraste brutalista.
+                                </p>
+                                <div class="grid grid-cols-2 gap-4 border-t border-white/10 pt-8">
+                                    <div>
+                                        <div class="font-syne text-2xl font-bold text-cyan-400">+340%</div>
+                                        <div class="font-inter text-[11px] text-white/40 uppercase tracking-wide">Conversão</div>
+                                    </div>
+                                    <div>
+                                        <div class="font-syne text-2xl font-bold text-white">0.8s</div>
+                                        <div class="font-inter text-[11px] text-white/40 uppercase tracking-wide">Load Time</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="portfolio-item group relative flex flex-col lg:flex-row-reverse gap-12 items-center">
+                            <div class="relative w-full lg:w-[65%] aspect-[16/10] rounded-3xl overflow-hidden bg-[#050A15] border border-white/5">
+                                <div class="absolute inset-0 bg-gradient-to-t from-[#010308] via-transparent to-transparent z-10 opacity-60"></div>
+                                
+                                <div class="absolute inset-4 md:inset-8 rounded-xl bg-[#0A1020] border border-white/10 overflow-hidden shadow-2xl transform transition-transform duration-1000 group-hover:scale-105 group-hover:rotate-1">
+                                    <div class="w-full h-8 bg-[#050A15] border-b border-white/5 flex items-center px-4 gap-2">
+                                        <div class="w-2.5 h-2.5 rounded-full bg-white/10"></div>
+                                        <div class="w-2.5 h-2.5 rounded-full bg-white/10"></div>
+                                        <div class="w-2.5 h-2.5 rounded-full bg-white/10"></div>
+                                    </div>
+                                    <div class="p-8 w-full h-full relative overflow-hidden flex gap-6">
+                                        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-emerald-600/10 blur-[80px]"></div>
+                                        <div class="grid grid-cols-2 gap-4 w-full h-full">
+                                            <div class="rounded-lg bg-white/5 border border-white/10"></div>
+                                            <div class="rounded-lg bg-white/5 border border-white/10 mt-8"></div>
+                                            <div class="rounded-lg bg-white/5 border border-white/10 -mt-8"></div>
+                                            <div class="rounded-lg bg-white/5 border border-white/10"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="absolute inset-0 z-20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-black/20 backdrop-blur-[2px]">
+                                    <a href="https://ldbordados-personalizados.github.io/" target="_blank" class="flex h-16 w-16 items-center justify-center rounded-full bg-white text-black transform scale-50 group-hover:scale-100 transition-transform duration-500 delay-100">
+                                        <i data-lucide="arrow-up-right" class="h-6 w-6"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <div class="w-full lg:w-[35%] flex flex-col justify-center">
+                                <div class="flex gap-2 mb-6">
+                                    <span class="rounded-full border border-white/10 px-3 py-1 font-jetbrains text-[10px] text-white/50">E-commerce UI</span>
+                                    <span class="rounded-full border border-white/10 px-3 py-1 font-jetbrains text-[10px] text-white/50">Catálogo</span>
+                                </div>
+                                <h3 class="font-syne text-3xl font-bold text-white mb-4">LD Bordados</h3>
+                                <p class="font-inter text-white/50 text-[15px] leading-relaxed mb-8">
+                                    Vitrine digital SIMPLES. Transformamos produtos personalizados em objetos de desejo através de uma exposição premium, clean e ultra-responsiva.
+                                </p>
+                                <div class="grid grid-cols-2 gap-4 border-t border-white/10 pt-8">
+                                    <div>
+                                        <div class="font-syne text-2xl font-bold text-white">100%</div>
+                                        <div class="font-inter text-[11px] text-white/40 uppercase tracking-wide">Responsivo</div>
+                                    </div>
+                                    <div>
+                                        <div class="font-syne text-2xl font-bold text-white">A+</div>
+                                        <div class="font-inter text-[11px] text-white/40 uppercase tracking-wide">Grade UI/UX</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <section class="relative py-40 overflow-hidden">
+                <div class="absolute inset-0 bg-[#02050E]"></div>
+                <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-px bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent"></div>
+                <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[400px] h-[300px] bg-cyan-600/20 blur-[120px] rounded-full pointer-events-none"></div>
+                
+                <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#fff 1px, transparent 1px); background-size: 24px 24px;"></div>
+
+                <div class="relative z-10 mx-auto max-w-4xl px-6 text-center flex flex-col items-center">
+                    
+                    <div class="inline-flex h-16 w-16 items-center justify-center rounded-full border border-white/10 bg-white/5 mb-8 relative">
+                        <div class="absolute inset-0 rounded-full border border-cyan-400/30 animate-ping"></div>
+                        <i data-lucide="rocket" class="h-6 w-6 text-cyan-400"></i>
+                    </div>
+
+                    <h2 class="font-syne text-[clamp(3rem,6vw,5.5rem)] font-extrabold leading-[0.95] text-white tracking-tight mb-8">
+                        Pronto para o<br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-500">Próximo Nível?</span>
+                    </h2>
+                    
+                    <p class="font-inter text-lg text-white/50 max-w-xl mx-auto mb-12">
+                        Deixe seus concorrentes no passado. Solicite uma análise gratuita e descubra como podemos transformar sua presença digital.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row gap-6">
+                        <a href="https://wa.me/5583996668601?text=Olá!%20Vi%20o%20site%20da%20Pure%20Layout%20e%20gostaria%20de%20solicitar%20um%20orçamento." data-magnetic class="group relative flex h-16 items-center justify-center overflow-hidden rounded-full bg-white px-10 font-inter text-[15px] font-bold text-black transition-transform hover:scale-105 shadow-[0_0_40px_rgba(255,255,255,0.2)]">
+                            <span class="relative z-10 flex items-center gap-3">
+                                <i data-lucide="message-square" class="h-5 w-5"></i>
+                                Solicitar orçamento
+                            </span>
+                            <div class="absolute inset-0 -z-0 bg-gradient-to-r from-cyan-200 to-white opacity-0 transition-opacity group-hover:opacity-100"></div>
+                        </a>
+                        
+                        <a href="https://instagram.com/purelayout.dev" target="_blank" class="flex items-center gap-2 hover:text-cyan-400 transition-colors">
+                            nosso instagram
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <footer class="relative border-t border-white/[0.05] bg-[#010205] pt-20 pb-10 overflow-hidden">
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[20vw] font-syne font-black text-white/[0.01] pointer-events-none select-none z-0 tracking-tighter w-full text-center">
+                    PURE
+                </div>
+
+                <div class="mx-auto max-w-7xl px-6 relative z-10">
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-12 mb-20">
+                        
+                        <div class="md:col-span-5 flex flex-col">
+                            <a href="#hero" class="flex items-center gap-3 mb-6">
+                                <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-white text-black">
+                                    <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 2 22 22 22"></polygon></svg>
+                                </div>
+                                <span class="font-syne text-lg font-bold tracking-widest text-white">PURE<span class="text-cyan-500">LAYOUT</span></span>
+                            </a>
+                            <p class="font-inter text-sm text-white/40 max-w-xs leading-relaxed">
+                                Agência de design e desenvolvimento premium. Criamos experiências digitais inesquecíveis para marcas que não aceitam ser a segunda opção.
+                            </p>
+                        </div>
+
+                        <div class="md:col-span-2 md:col-start-8">
+                            <h4 class="font-jetbrains text-[10px] uppercase tracking-[0.15em] text-white/30 mb-6">Navegação</h4>
+                            <ul class="space-y-4 font-inter text-sm text-white/60">
+                                <li><a href="#hero" class="hover:text-cyan-400 transition-colors">Início</a></li>
+                                <li><a href="#diferenciais" class="hover:text-cyan-400 transition-colors">Expertise</a></li>
+                                <li><a href="#portfolio" class="hover:text-cyan-400 transition-colors">Work</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="md:col-span-3">
+                            <h4 class="font-jetbrains text-[10px] uppercase tracking-[0.15em] text-white/30 mb-6">Social & Contato</h4>
+                            <ul class="space-y-4 font-inter text-sm text-white/60">
+                                <li>
+                                    <a href="https://instagram.com/purelayout.dev" target="_blank" class="flex items-center gap-2 hover:text-cyan-400 transition-colors">
+                                        <i data-lucide="instagram" class="w-5 h-5 opacity-100 block" style="stroke-width: 2px;"></i> 
+                                        <span class="text-[13px]">Instagram</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://wa.me/5583996668601?text=Olá!%20Vi%20o%20site%20da%20Pure%20Layout%20e%20gostaria%20de%20solicitar%20um%20orçamento." 
+                                    target="_blank" 
+                                    class="flex items-center gap-2 hover:text-cyan-400 transition-colors">
+                                        <i data-lucide="message-circle" class="h-4 w-4"></i> WhatsApp
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col md:flex-row items-center justify-between border-t border-white/[0.05] pt-8 font-jetbrains text-[11px] text-white/30">
+                        <p>© 2026 PURE LAYOUT. Todos os direitos reservados.</p>
+                        <div class="flex items-center gap-4 mt-4 md:mt-0">
+                            <span>Status: <span class="text-green-500">All Systems Operational</span></span>
+                            <span class="hidden md:inline">|</span>
+                            <span>João Pessoa, PB - Brasil</span>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+    <script src="main.js"></script> 
+</body>
+</html>
