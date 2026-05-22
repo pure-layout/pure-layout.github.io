@@ -2,84 +2,99 @@
 <html lang="pt-BR" class="dark antialiased selection:bg-cyan-500/30 selection:text-cyan-200">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>PURE LAYOUT | Experiências Digitais de Elite</title>
     <meta name="description" content="Ecossistemas digitais de alta conversão, design cinematográfico e performance extrema.">
     <meta name="theme-color" content="#010308">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="format-detection" content="telephone=no">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Syne:wght@600;700;800&display=swap" as="style">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
-    <link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&display=swap" rel="stylesheet">
+    <link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <script src="https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-
     <script src="tailwind.config.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body class="bg-[#010308] text-slate-300 overflow-x-hidden">
 
-    <div class="pointer-events-none fixed inset-0 z-[100] h-full w-full opacity-[0.03] mix-blend-screen bg-noise-pattern"></div>
+    <a href="#hero" class="skip-link">Ir para o conteúdo principal</a>
+
+    <div class="pointer-events-none fixed inset-0 z-[100] h-full w-full opacity-[0.03] mix-blend-screen bg-noise-pattern" aria-hidden="true"></div>
 
     <div id="custom-cursor" class="hidden md:block pointer-events-none fixed left-0 top-0 z-[9999] h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white mix-blend-difference transition-transform duration-100 ease-out"></div>
     <div id="cursor-follower" class="hidden md:block pointer-events-none fixed left-0 top-0 z-[9998] h-12 w-12 -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/20 transition-transform duration-300 ease-out"></div>
 
-    <header class="fixed left-0 right-0 top-6 z-50 mx-auto max-w-5xl px-6 transition-all duration-500" id="navbar">
-        <div class="nav-glassmorphism flex h-16 items-center justify-between rounded-full border border-white/5 bg-white/[0.02] px-6 backdrop-blur-2xl shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
+    <header class="fixed left-0 right-0 top-0 z-50 w-full px-4 pt-[max(0.75rem,env(safe-area-inset-top))] transition-all duration-500 md:top-6 md:px-6" id="navbar">
+        <div class="nav-glassmorphism mx-auto flex h-14 max-w-5xl items-center justify-between rounded-2xl border border-white/5 bg-white/[0.02] px-4 backdrop-blur-2xl shadow-[0_8px_32px_rgba(0,0,0,0.4)] md:h-16 md:rounded-full md:px-6">
             
-            <a href="#hero" class="group flex items-center gap-3" data-magnetic>
-                <div class="relative flex h-8 w-8 items-center justify-center overflow-hidden rounded-lg border border-white/10 bg-[#050A15]">
+            <a href="#hero" class="group flex min-h-[44px] items-center gap-2.5 md:gap-3" data-magnetic aria-label="Pure Layout - Início">
+                <div class="relative flex h-8 w-8 shrink-0 items-center justify-center overflow-hidden rounded-lg border border-white/10 bg-[#050A15]">
                     <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/20 to-blue-600/20 opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
-                    <div class="absolute -left-1/2 -top-1/2 h-full w-full animate-[spin_4s_linear_infinite] bg-gradient-to-r from-transparent via-cyan-400/30 to-transparent"></div>
+                    <div class="absolute -left-1/2 -top-1/2 h-full w-full animate-[spin_4s_linear_infinite] bg-gradient-to-r from-transparent via-cyan-400/30 to-transparent hidden md:block"></div>
                     <div class="absolute inset-[1px] rounded-md bg-[#010308]"></div>
-                    <img src="logo.svg" alt="Pure Layout Logo" class="relative z-10 h-8 w-8 text-white">
+                    <img src="logo.svg" alt="" width="32" height="32" class="relative z-10 h-8 w-8" loading="eager" decoding="async">
                 </div>
-                <span class="font-syne text-sm font-bold tracking-widest text-white">PURE<span class="text-cyan-400 text-opacity-80">LAYOUT</span></span>
+                <span class="font-syne text-xs font-bold tracking-[0.15em] text-white sm:text-sm sm:tracking-widest">PURE<span class="text-cyan-400/90">LAYOUT</span></span>
             </a>
 
-            <nav class="hidden md:flex items-center gap-8 font-inter text-[13px] font-medium tracking-wide text-white/50">
-                <a href="#diferenciais" class="nav-link hover:text-white transition-colors duration-300 relative">
-                    <span>Vantagens</span>
-                </a>
-                <a href="#portfolio" class="nav-link hover:text-white transition-colors duration-300 relative">
-                    <span>sites publicados</span>
-                </a>
-                <a href="#processo" class="nav-link hover:text-white transition-colors duration-300 relative">
-                    <span>Processo</span>
-                </a>
+            <nav class="hidden md:flex items-center gap-8 font-inter text-[13px] font-medium tracking-wide text-white/50" aria-label="Navegação principal">
+                <a href="#diferenciais" class="nav-link hover:text-white transition-colors duration-300">Vantagens</a>
+                <a href="#portfolio" class="nav-link hover:text-white transition-colors duration-300">Sites publicados</a>
+                <a href="#portfolio" class="nav-link hover:text-white transition-colors duration-300">Cases</a>
             </nav>
 
-            <div class="flex items-center gap-4">
-                <a href="https://wa.me/5583996668601" target="_blank" data-magnetic class="group relative hidden md:inline-flex h-10 items-center justify-center overflow-hidden rounded-full border border-white/10 bg-white/[0.03] px-6 font-inter text-[13px] font-semibold text-white transition-all hover:bg-white/[0.08] hover:border-white/20">
+            <div class="flex items-center gap-2 md:gap-4">
+                <a href="https://wa.me/5583996668601?text=Olá!%20Vi%20o%20site%20da%20Pure%20Layout%20e%20gostaria%20de%20solicitar%20um%20orçamento." target="_blank" rel="noopener noreferrer" data-magnetic class="btn-touch group relative hidden md:inline-flex h-10 items-center justify-center overflow-hidden rounded-full border border-white/10 bg-white/[0.03] px-6 font-inter text-[13px] font-semibold text-white transition-all hover:bg-white/[0.08] hover:border-white/20">
                     <span class="relative z-10 flex items-center gap-2">
                         Iniciar Projeto <i data-lucide="arrow-right" class="h-3.5 w-3.5 transition-transform group-hover:translate-x-1"></i>
                     </span>
                     <div class="absolute inset-0 -z-10 bg-gradient-to-r from-cyan-500/10 to-blue-600/10 opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
                 </a>
                 
-                <button class="md:hidden text-white/70 hover:text-white" id="menu-toggle">
-                    <i data-lucide="menu" class="h-6 w-6"></i>
+                <button type="button" class="btn-icon md:hidden" id="menu-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Abrir menu de navegação">
+                    <i data-lucide="menu" class="menu-icon-open h-6 w-6" aria-hidden="true"></i>
                 </button>
             </div>
         </div>
 
-        <!-- Mobile Menu Overlay -->
-        <div id="mobile-menu" class="md:hidden fixed inset-0 z-[60] bg-[#010308]/98 backdrop-blur-xl opacity-0 pointer-events-none transition-opacity duration-300">
-            <div class="flex flex-col items-center justify-center h-full gap-8 p-6">
-                <button id="menu-close" class="absolute top-6 right-6 text-white/70 hover:text-white">
-                    <i data-lucide="x" class="h-6 w-6"></i>
-                </button>
-                <a href="#diferenciais" class="mobile-nav-link font-syne text-2xl font-bold text-white hover:text-cyan-400 transition-colors">Vantagens</a>
-                <a href="#portfolio" class="mobile-nav-link font-syne text-2xl font-bold text-white hover:text-cyan-400 transition-colors">Sites Publicados</a>
-                <a href="#processo" class="mobile-nav-link font-syne text-2xl font-bold text-white hover:text-cyan-400 transition-colors">Processo</a>
-                <a href="https://wa.me/5583996668601" target="_blank" class="mt-4 flex h-14 items-center justify-center gap-3 overflow-hidden rounded-full bg-white px-8 font-inter text-[14px] font-bold text-black">
-                    Iniciar Projeto
-                </a>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu md:hidden" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Menu de navegação">
+            <div class="mobile-menu-backdrop" data-menu-close></div>
+            <div class="mobile-menu-panel">
+                <div class="mobile-menu-header">
+                    <span class="font-jetbrains text-[10px] uppercase tracking-[0.2em] text-cyan-400/80">Menu</span>
+                    <button type="button" id="menu-close" class="btn-icon" aria-label="Fechar menu">
+                        <i data-lucide="x" class="h-6 w-6" aria-hidden="true"></i>
+                    </button>
+                </div>
+                <nav class="mobile-menu-nav" aria-label="Navegação mobile">
+                    <a href="#diferenciais" class="mobile-nav-link" data-menu-close>
+                        <span class="mobile-nav-index">01</span>
+                        <span>Vantagens</span>
+                    </a>
+                    <a href="#portfolio" class="mobile-nav-link" data-menu-close>
+                        <span class="mobile-nav-index">02</span>
+                        <span>Sites Publicados</span>
+                    </a>
+                    <a href="#portfolio" class="mobile-nav-link" data-menu-close>
+                        <span class="mobile-nav-index">03</span>
+                        <span>Cases & Métricas</span>
+                    </a>
+                </nav>
+                <div class="mobile-menu-footer">
+                    <a href="https://wa.me/5583996668601?text=Olá!%20Vi%20o%20site%20da%20Pure%20Layout%20e%20gostaria%20de%20solicitar%20um%20orçamento." target="_blank" rel="noopener noreferrer" class="btn-cta-primary w-full" data-menu-close>
+                        <i data-lucide="message-circle" class="h-5 w-5" aria-hidden="true"></i>
+                        Solicitar orçamento
+                    </a>
+                    <p class="mt-4 text-center font-inter text-xs text-white/40">Resposta em até 24h · João Pessoa, PB</p>
+                </div>
             </div>
         </div>
     </header>
@@ -87,31 +102,30 @@
     <div id="smooth-wrapper">
         <div id="smooth-content">
 
-            <section id="hero" class="relative min-h-[100vh] md:min-h-[110vh] w-full overflow-hidden flex items-center pt-16 md:pt-20">
+            <section id="hero" class="relative min-h-[min(100dvh,900px)] md:min-h-[110vh] w-full max-w-[100vw] overflow-hidden flex items-center pt-[calc(5rem+env(safe-area-inset-top))] pb-8 md:pt-20 md:pb-0">
                 
-                <div class="absolute inset-0 z-0">
-                    <div class="absolute top-[-20%] left-1/2 -translate-x-1/2 w-[800px] h-[600px] rounded-[100%] bg-blue-900/20 blur-[120px]"></div>
-                    <div class="absolute top-[10%] left-[20%] w-[500px] h-[500px] rounded-[100%] bg-cyan-600/10 blur-[150px]"></div>
-                    
-                    <div class="hero-grid absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
+                <div class="absolute inset-0 z-0 overflow-hidden" aria-hidden="true">
+                    <div class="hero-blob absolute top-[-20%] left-1/2 -translate-x-1/2 w-[min(800px,120vw)] h-[min(600px,80vh)] rounded-[100%] bg-blue-900/20 blur-[80px] md:blur-[120px]"></div>
+                    <div class="hero-blob absolute top-[10%] left-[10%] w-[min(500px,70vw)] h-[min(500px,50vh)] rounded-[100%] bg-cyan-600/10 blur-[60px] md:blur-[150px]"></div>
+                    <div class="hero-grid absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:32px_32px] md:bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
                 </div>
 
-                <div class="relative z-10 mx-auto w-full max-w-7xl px-6 lg:px-8 flex flex-col items-center text-center">
+                <div class="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center">
                     
-                    <div class="reveal-up inline-flex items-center gap-2 rounded-full border border-white/5 bg-white/[0.02] px-4 py-1.5 backdrop-blur-md mb-8">
-                        <span class="relative flex h-2 w-2">
-                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+                    <div class="reveal-up inline-flex items-center gap-2 rounded-full border border-white/5 bg-white/[0.02] px-3 py-1.5 backdrop-blur-md mb-6 md:mb-8">
+                        <span class="relative flex h-2 w-2 shrink-0">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75 motion-reduce:hidden"></span>
                             <span class="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
                         </span>
-                        <span class="font-jetbrains text-[11px] font-medium tracking-[0.2em] text-white/70 uppercase">High-End Digital Studio</span>
+                        <span class="font-jetbrains text-[10px] sm:text-[11px] font-medium tracking-[0.15em] sm:tracking-[0.2em] text-white/70 uppercase">High-End Digital Studio</span>
                     </div>
 
-                    <h1 class="reveal-up font-syne text-[clamp(1.5rem,7vw,7rem)] font-extrabold leading-[0.95] tracking-tight text-white mb-8 select-none">
+                    <h1 class="reveal-up hero-title font-syne font-extrabold tracking-tight text-white mb-6 md:mb-8">
                         <span class="block text-transparent bg-clip-text bg-gradient-to-b from-white via-white/90 to-white/30">
                             Construímos o
                         </span>
                         <span class="block relative">
-                            <span class="absolute -inset-1 blur-2xl bg-gradient-to-r from-cyan-500/20 via-blue-500/20 to-purple-500/20 opacity-50"></span>
+                            <span class="absolute -inset-1 blur-2xl bg-gradient-to-r from-cyan-500/20 via-blue-500/20 to-purple-500/20 opacity-50 motion-reduce:opacity-0" aria-hidden="true"></span>
                             <span class="relative text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-400">Padrão Ouro</span>
                         </span>
                         <span class="block text-transparent bg-clip-text bg-gradient-to-b from-white/90 to-white/20">
@@ -119,20 +133,55 @@
                         </span>
                     </h1>
 
-                    <p class="reveal-up font-inter text-[clamp(1rem,1.5vw,1.15rem)] font-light leading-[1.8] text-white/60 max-w-2xl text-balance mb-12">
-                        Elevamos o padrão do seu posicionamento. <strong class="font-syne font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 tracking-wide">Desenvolvemos máquinas de conversão invisíveis,</strong> onde design brutalista e performance cirúrgica transformam utilizadores em clientes de alto valor.
+                    <p class="reveal-up hero-subtitle font-inter font-light text-white/60 max-w-2xl text-balance mb-8 md:mb-12 px-1">
+                        Elevamos o padrão do seu posicionamento. <strong class="font-syne font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Desenvolvemos máquinas de conversão invisíveis,</strong> onde design brutalista e performance cirúrgica transformam visitantes em clientes de alto valor.
                     </p>
 
-                    <div class="reveal-up flex flex-col sm:flex-row items-center gap-6">
-                        <a href="https://wa.me/5583996668601" data-magnetic class="group relative flex h-14 items-center justify-center gap-3 overflow-hidden rounded-full bg-white px-8 font-inter text-[14px] font-bold text-black transition-transform hover:scale-105">
-                            <span class="relative z-10 flex items-center gap-2">
+                    <div class="reveal-up flex w-full max-w-md flex-col items-stretch gap-3 sm:max-w-none sm:flex-row sm:items-center sm:justify-center sm:gap-4">
+                        <a href="https://wa.me/5583996668601?text=Olá!%20Vi%20o%20site%20da%20Pure%20Layout%20e%20gostaria%20de%20solicitar%20um%20orçamento." target="_blank" rel="noopener noreferrer" data-magnetic class="btn-cta-primary group">
+                            <span class="relative z-10 flex items-center justify-center gap-2">
                                 Solicitar orçamento
-                                <svg class="h-4 w-4 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                                <svg class="h-4 w-4 transition-transform group-hover:translate-x-1 group-active:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                             </span>
-                            <div class="absolute inset-0 z-0 bg-gradient-to-r from-cyan-100 to-white opacity-0 transition-opacity group-hover:opacity-100"></div>
                         </a>
-                            
+                        <a href="#portfolio" class="btn-cta-secondary">
+                            Ver cases publicados
                         </a>
+                    </div>
+
+                    <!-- Mobile hero metrics -->
+                    <div class="reveal-up mt-10 grid w-full max-w-lg grid-cols-3 gap-3 md:hidden">
+                        <div class="hero-stat-card">
+                            <span class="hero-stat-value text-cyan-400">100</span>
+                            <span class="hero-stat-label">Performance</span>
+                        </div>
+                        <div class="hero-stat-card">
+                            <span class="hero-stat-value">+340%</span>
+                            <span class="hero-stat-label">Conversão</span>
+                        </div>
+                        <div class="hero-stat-card">
+                            <span class="hero-stat-value">0.8s</span>
+                            <span class="hero-stat-label">Load Time</span>
+                        </div>
+                    </div>
+
+                    <!-- Mobile dashboard preview -->
+                    <div class="reveal-up mobile-hero-preview mt-8 w-full max-w-md md:hidden">
+                        <div class="mobile-preview-card">
+                            <div class="mobile-preview-bar">
+                                <span class="mobile-preview-dot bg-red-400/80"></span>
+                                <span class="mobile-preview-dot bg-yellow-400/80"></span>
+                                <span class="mobile-preview-dot bg-green-400/80"></span>
+                                <span class="mobile-preview-url">purelayout.dev</span>
+                            </div>
+                            <div class="mobile-preview-body">
+                                <div class="mobile-preview-metric">
+                                    <span class="text-[10px] font-mono uppercase text-white/40">Uptime</span>
+                                    <span class="font-syne text-xl font-bold text-white">99.9%</span>
+                                </div>
+                                <div class="mobile-preview-chart" aria-hidden="true"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -287,9 +336,9 @@
     </div>
 </div>
 
-                <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50 z-30">
+                <div class="absolute bottom-6 left-1/2 -translate-x-1/2 hidden sm:flex flex-col items-center gap-2 opacity-50 z-30 motion-reduce:hidden">
                     <span class="font-jetbrains text-[9px] uppercase tracking-widest text-white/50">Scroll para explorar</span>
-                    <div class="h-10 w-[1px] bg-gradient-to-b from-white/30 to-transparent"></div>
+                    <div class="h-10 w-px bg-gradient-to-b from-white/30 to-transparent"></div>
                 </div>
             </section>
 
@@ -323,30 +372,30 @@
         </div>
             </section>
 
-            <section class="relative py-16 md:py-40 px-4 md:px-6 max-w-5xl mx-auto flex items-center justify-center text-center">
-                <div class="statement-text-wrapper perspective-[1000px]">
-                    <h2 class="font-syne text-[clamp(1.5rem,5vw,4rem)] font-bold leading-[1.1] md:leading-[1.1] text-white/90">
+            <section class="relative py-12 sm:py-16 md:py-40 px-4 sm:px-6 max-w-5xl mx-auto flex items-center justify-center text-center">
+                <div class="statement-text-wrapper w-full">
+                    <h2 class="statement-heading font-syne font-bold text-white/90">
                         O design medíocre está <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-orange-500">matando suas vendas</span>.<br>
                         Nós injetamos <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">engenharia de percepção</span> para transformar sua marca em uma autoridade inquestionável.
                     </h2>
                 </div>
             </section>
 
-            <section id="diferenciais" class="relative py-16 md:py-32 px-4 md:px-6">
-                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-600/5 blur-[200px] rounded-full pointer-events-none"></div>
+            <section id="diferenciais" class="relative py-14 sm:py-16 md:py-32 px-4 sm:px-6">
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[min(800px,150vw)] h-[min(800px,100vh)] bg-blue-600/5 blur-[120px] md:blur-[200px] rounded-full pointer-events-none" aria-hidden="true"></div>
 
                 <div class="mx-auto max-w-7xl relative z-10">
-                    <div class="mb-12 md:mb-20">
+                    <div class="mb-10 sm:mb-12 md:mb-20">
                         <div class="flex items-center gap-3 mb-4">
-                            <div class="h-[1px] w-8 bg-cyan-500/50"></div>
+                            <div class="h-px w-8 bg-cyan-500/50"></div>
                             <span class="font-jetbrains text-[10px] uppercase tracking-[0.2em] text-cyan-400">Arquitetura da Excelência</span>
                         </div>
-                        <h2 class="font-syne text-[clamp(2rem,5vw,4.5rem)] font-bold leading-none text-white tracking-tight">
+                        <h2 class="section-title font-syne font-bold leading-none text-white tracking-tight">
                             Arquitetura <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-white/50 to-white/10">sofisticada</span>
                         </h2>
                     </div>
 
-                   <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+                   <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
                    <div class="bento-card group relative md:col-span-2 md:row-span-2 rounded-3xl border border-white/10 bg-[#02040A] p-6 md:p-10 overflow-hidden transition-all duration-700 hover:border-cyan-500/30 hover:bg-[#030612] hover:shadow-[0_0_40px_rgba(6,182,212,0.1)]">
     
     <div class="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-50 group-hover:opacity-100 transition-opacity duration-700"></div>
@@ -357,11 +406,11 @@
             <div class="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.03] text-white shadow-inner backdrop-blur-md group-hover:border-cyan-500/30 group-hover:text-cyan-400 transition-colors duration-500">
                 <i data-lucide="aperture" class="h-6 w-6"></i>
             </div>
-            <h3 class="font-syne text-3xl font-bold text-white mb-4 tracking-tight">Engenharia de <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Percepção</span></h3>
-            <p class="font-inter text-[15px] text-white/50 leading-relaxed">Neurodesign aplicado. Cada sombra, espaçamento e micro-interação é matematicamente posicionado para reter atenção e gerar autoridade instantânea.</p>
+            <h3 class="font-syne text-2xl sm:text-3xl font-bold text-white mb-3 sm:mb-4 tracking-tight">Engenharia de <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Percepção</span></h3>
+            <p class="font-inter text-sm sm:text-[15px] text-white/50 leading-relaxed">Neurodesign aplicado. Cada sombra, espaçamento e micro-interação é matematicamente posicionado para reter atenção e gerar autoridade instantânea.</p>
         </div>
         
-        <div class="absolute -bottom-16 -right-16 md:-bottom-12 md:-right-4 h-[300px] w-[450px] perspective-[1500px] pointer-events-none">
+        <div class="absolute -bottom-16 -right-16 md:-bottom-12 md:-right-4 h-[300px] w-[450px] perspective-[1500px] pointer-events-none hidden sm:block">
             
             <div class="relative w-full h-full transform-style-3d transition-transform duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] rotate-x-[15deg] rotate-y-[-10deg] scale-95 group-hover:rotate-x-[25deg] group-hover:rotate-y-[-20deg] group-hover:-translate-x-8 group-hover:-translate-y-4">
                 
@@ -526,12 +575,15 @@
 </div>
 </div>
 
-            <section id="portfolio" class="relative py-20 md:py-40">
-                <div class="mx-auto max-w-7xl px-4 md:px-6">
-                    <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 md:mb-20 gap-8">
+                </div>
+            </section>
+
+            <section id="portfolio" class="relative py-16 sm:py-20 md:py-40">
+                <div class="mx-auto max-w-7xl px-4 sm:px-6">
+                    <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 sm:mb-12 md:mb-20 gap-6 md:gap-8">
                         <div>
                             <span class="font-jetbrains text-[10px] uppercase tracking-[0.2em] text-cyan-400 block mb-4">Selected Work</span>
-                            <h2 class="font-syne text-[clamp(2.5rem,4vw,4rem)] font-bold leading-[1.1] text-white tracking-tight">
+                            <h2 class="section-title font-syne font-bold leading-[1.1] text-white tracking-tight">
                                 Cases que redefinem <br>o mercado.
                             </h2>
                         </div>
@@ -549,12 +601,12 @@
 
         <div class="absolute inset-2 md:inset-4 lg:inset-8 rounded-xl bg-[#0A1020] border border-white/10 overflow-hidden shadow-2xl transform transition-transform duration-1000 group-hover:scale-[1.03] group-hover:-rotate-1">
 
-            <img src="assets/site1.jpg" alt="Preview Catalisador de Vendas" class="w-full h-full object-cover object-top transition-transform duration-1000 group-hover:scale-105">
+            <img src="assets/site1.jpg" alt="Preview Catalisador de Vendas" width="800" height="500" loading="lazy" decoding="async" class="w-full h-full object-cover object-top transition-transform duration-1000 group-hover:scale-105">
 
         </div>
 
-        <div class="absolute inset-0 z-20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-black/40 backdrop-blur-[2px]">
-            <a href="http://www.catalisadordevendas.com.br" target="_blank" class="flex h-12 w-12 md:h-16 md:w-16 items-center justify-center rounded-full bg-white text-black transform scale-50 group-hover:scale-100 transition-transform duration-500 delay-100">
+        <div class="portfolio-overlay absolute inset-0 z-20 flex items-center justify-center bg-black/30 backdrop-blur-[2px] md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-500">
+            <a href="http://www.catalisadordevendas.com.br" target="_blank" rel="noopener noreferrer" class="btn-touch flex h-14 w-14 md:h-16 md:w-16 items-center justify-center rounded-full bg-white text-black shadow-lg md:scale-50 md:group-hover:scale-100 transition-transform duration-500" aria-label="Abrir Catalisador de Vendas">
                 <i data-lucide="arrow-up-right" class="h-5 w-5 md:h-6 md:w-6"></i>
             </a>
         </div>
@@ -562,13 +614,16 @@
 
     <div class="w-full lg:w-[35%] flex flex-col justify-center">
         <div class="flex flex-wrap gap-2 mb-4 md:mb-6">
-            <span class="rounded-full border border-white/10 px-3 py-1 font-jetbrains text-[10px] text-white/50">Landing Page</span>
+            <span class="rounded-full border border-white/10 px-3 py-1.5 font-jetbrains text-[11px] text-white/50">Landing Page</span>
             <span class="rounded-full border border-white/10 px-3 py-1 font-jetbrains text-[10px] text-white/50">High Conversion</span>
         </div>
         <h3 class="font-syne text-2xl md:text-3xl font-bold text-white mb-3 md:mb-4">Catalisador de Vendas</h3>
-        <p class="font-inter text-white/50 text-[13px] md:text-[15px] leading-relaxed mb-6 md:mb-8">
+        <p class="font-inter text-white/50 text-sm md:text-[15px] leading-relaxed mb-4 md:mb-8">
             Uma máquina de captura de leads. Design focado em guiar o olhar do usuário direto para a ação, utilizando princípios de neurociência e contraste brutalista.
         </p>
+        <a href="http://www.catalisadordevendas.com.br" target="_blank" rel="noopener noreferrer" class="portfolio-mobile-link md:hidden mb-6">
+            Ver projeto ao vivo <i data-lucide="external-link" class="h-4 w-4"></i>
+        </a>
         <div class="grid grid-cols-2 gap-4 border-t border-white/10 pt-6 md:pt-8">
             <div>
                 <div class="font-syne text-xl md:text-2xl font-bold text-cyan-400">+340%</div>
@@ -589,12 +644,12 @@
 
         <div class="absolute inset-2 md:inset-4 lg:inset-8 rounded-xl bg-[#0A1020] border border-white/10 overflow-hidden shadow-2xl transform transition-transform duration-1000 group-hover:scale-[1.03] group-hover:rotate-1">
 
-            <img src="assets/site2.jpg" alt="Preview LD Bordados" class="w-full h-full object-cover object-top transition-transform duration-1000 group-hover:scale-105">
+            <img src="assets/site2.jpg" alt="Preview LD Bordados" width="800" height="500" loading="lazy" decoding="async" class="w-full h-full object-cover object-top transition-transform duration-1000 group-hover:scale-105">
 
         </div>
 
-        <div class="absolute inset-0 z-20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-black/40 backdrop-blur-[2px]">
-            <a href="https://ldbordados-personalizados.github.io/" target="_blank" class="flex h-12 w-12 md:h-16 md:w-16 items-center justify-center rounded-full bg-white text-black transform scale-50 group-hover:scale-100 transition-transform duration-500 delay-100">
+        <div class="portfolio-overlay absolute inset-0 z-20 flex items-center justify-center bg-black/30 backdrop-blur-[2px] md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-500">
+            <a href="https://ldbordados-personalizados.github.io/" target="_blank" rel="noopener noreferrer" class="btn-touch flex h-14 w-14 md:h-16 md:w-16 items-center justify-center rounded-full bg-white text-black shadow-lg md:scale-50 md:group-hover:scale-100 transition-transform duration-500" aria-label="Abrir LD Bordados">
                 <i data-lucide="arrow-up-right" class="h-5 w-5 md:h-6 md:w-6"></i>
             </a>
         </div>
@@ -602,13 +657,16 @@
 
     <div class="w-full lg:w-[35%] flex flex-col justify-center">
         <div class="flex flex-wrap gap-2 mb-4 md:mb-6">
-            <span class="rounded-full border border-white/10 px-3 py-1 font-jetbrains text-[10px] text-white/50">E-commerce UI</span>
+            <span class="rounded-full border border-white/10 px-3 py-1.5 font-jetbrains text-[11px] text-white/50">E-commerce UI</span>
             <span class="rounded-full border border-white/10 px-3 py-1 font-jetbrains text-[10px] text-white/50">Catálogo</span>
         </div>
         <h3 class="font-syne text-2xl md:text-3xl font-bold text-white mb-3 md:mb-4">LD Bordados</h3>
-        <p class="font-inter text-white/50 text-[13px] md:text-[15px] leading-relaxed mb-6 md:mb-8">
+        <p class="font-inter text-white/50 text-sm md:text-[15px] leading-relaxed mb-4 md:mb-8">
             Vitrine digital SIMPLES. Transformamos produtos personalizados em objetos de desejo através de uma exposição premium, clean e ultra-responsiva.
         </p>
+        <a href="https://ldbordados-personalizados.github.io/" target="_blank" rel="noopener noreferrer" class="portfolio-mobile-link md:hidden mb-6">
+            Ver projeto ao vivo <i data-lucide="external-link" class="h-4 w-4"></i>
+        </a>
         <div class="grid grid-cols-2 gap-4 border-t border-white/10 pt-6 md:pt-8">
             <div>
                 <div class="font-syne text-xl md:text-2xl font-bold text-white">100%</div>
@@ -637,8 +695,8 @@
                         Deixe seus concorrentes no passado. Solicite uma análise gratuita e descubra como podemos transformar sua presença digital.
                     </p>
 
-                    <div class="flex flex-col sm:flex-row gap-4 md:gap-6 w-full max-w-md">
-                        <a href="https://wa.me/5583996668601?text=Olá!%20Vi%20o%20site%20da%20Pure%20Layout%20e%20gostaria%20de%20solicitar%20um%20orçamento." data-magnetic class="group relative flex h-14 md:h-16 items-center justify-center overflow-hidden rounded-full bg-white px-6 md:px-10 font-inter text-[14px] md:text-[15px] font-bold text-black transition-transform hover:scale-105 shadow-[0_0_40px_rgba(255,255,255,0.2)] w-full sm:w-auto">
+                    <div class="flex flex-col sm:flex-row gap-4 md:gap-6 w-full max-w-md px-2 sm:px-0">
+                        <a href="https://wa.me/5583996668601?text=Olá!%20Vi%20o%20site%20da%20Pure%20Layout%20e%20gostaria%20de%20solicitar%20um%20orçamento." target="_blank" rel="noopener noreferrer" data-magnetic class="btn-cta-primary group w-full sm:w-auto shadow-[0_0_40px_rgba(255,255,255,0.15)]">
                             <span class="relative z-10 flex items-center gap-2 md:gap-3">
                                 <i data-lucide="message-square" class="h-4 w-4 md:h-5 md:w-5"></i>
                                 Solicitar orçamento
@@ -716,9 +774,26 @@
         </div>
     </div>
 
-    <script>
-        lucide.createIcons();
-    </script>
-    <script src="main.js"></script> 
+    <!-- Floating WhatsApp CTA (mobile conversion) -->
+    <a href="https://wa.me/5583996668601?text=Olá!%20Vi%20o%20site%20da%20Pure%20Layout%20e%20gostaria%20de%20solicitar%20um%20orçamento." 
+       target="_blank" 
+       rel="noopener noreferrer" 
+       id="fab-whatsapp" 
+       class="fab-whatsapp md:hidden"
+       aria-label="Falar no WhatsApp">
+        <i data-lucide="message-circle" class="h-6 w-6" aria-hidden="true"></i>
+    </a>
+
+    <div id="page-loader" class="page-loader" aria-hidden="true">
+        <div class="page-loader-inner">
+            <div class="page-loader-bar"></div>
+            <span class="font-jetbrains text-[10px] uppercase tracking-widest text-white/40">Carregando</span>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
+    <script src="main.js" defer></script>
 </body>
 </html>
