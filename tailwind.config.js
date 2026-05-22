@@ -14,9 +14,11 @@ module.exports = {
         }
       },
       fontFamily: {
-        sans: ['DM Sans', 'sans-serif'],
+        sans: ['Inter', 'sans-serif'],
+        inter: ['Inter', 'sans-serif'],
         syne: ['Syne', 'sans-serif'],
-        mono: ['DM Mono', 'monospace'],
+        jetbrains: ['JetBrains Mono', 'monospace'],
+        mono: ['JetBrains Mono', 'monospace'],
         clash: ['Clash Display', 'sans-serif'],
       },
       letterSpacing: {
