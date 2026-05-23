@@ -10,17 +10,22 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="format-detection" content="telephone=no">
-
+     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Syne:wght@600;700;800&display=swap" as="style">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
     <link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-
+    </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="tailwind.config.js"></script>
+    <script src="./assets/js/hero-experience.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script type="module" src="./assets/js/hero-experience.js"></script>
+    
 
 <body class="bg-[#010308] text-slate-300 overflow-x-hidden">
 
@@ -107,6 +112,9 @@
             <section id="hero" class="hero-cinematic section-layer">
                 
                 <div class="hero-backdrop" aria-hidden="true">
+                    <canvas id="hero-canvas" class="absolute inset-0 w-full h-full z-0"></canvas>
+
+                    <div class="hero-glow hero-glow--primary"></div>
                     <div class="hero-glow hero-glow--primary"></div>
                     <div class="hero-glow hero-glow--secondary"></div>
                     <div class="hero-glow hero-glow--accent"></div>
@@ -117,7 +125,7 @@
                 </div>
                 <div class="hero-vignette" aria-hidden="true"></div>
 
-                <div class="hero-cinematic__inner">
+                <div class="hero-cinematic__inner pt-10">
                     <div class="hero-cinematic__copy">
                         <div class="hero-eyebrow reveal-hero" data-delay="0">
                             <span class="hero-eyebrow-dot"></span>
@@ -145,207 +153,115 @@
 
                         <p class="hero-trust reveal-hero" data-delay="4">Sem compromisso · Resposta em até 24h · João Pessoa, PB</p>
 
-                        <div id="resultados" class="credibility-bar reveal-hero" data-delay="5">
-                            <div class="credibility-item">
-                                <span class="credibility-value text-cyan-400">+340%</span>
-                                <span class="credibility-label">conversão</span>
-                            </div>
-                            <div class="credibility-divider"></div>
-                            <div class="credibility-item">
-                                <span class="credibility-value">0.8s</span>
-                                <span class="credibility-label">load time</span>
-                            </div>
-                            <div class="credibility-divider"></div>
-                            <div class="credibility-item">
-                                <span class="credibility-value">100</span>
-                                <span class="credibility-label">PageSpeed</span>
-                            </div>
-                        </div>
-
-                        <div class="hero-metrics-mobile reveal-hero md:hidden" data-delay="5">
-                            <div class="hero-stat-card"><span class="hero-stat-value text-cyan-400">+340%</span><span class="hero-stat-label">Conversão</span></div>
-                            <div class="hero-stat-card"><span class="hero-stat-value">0.8s</span><span class="hero-stat-label">Carga</span></div>
-                            <div class="hero-stat-card"><span class="hero-stat-value">100</span><span class="hero-stat-label">Score</span></div>
-                        </div>
-                    </div>
-
-                    <div class="hero-cinematic__stage reveal-hero hidden md:block" data-delay="6">
-                        <div class="hero-stage-ring" aria-hidden="true"></div>
-                        <div class="hero-stage-floor" aria-hidden="true"></div>
-                        <div class="hero-3d-wrapper perspective-[2000px]">
-    <div class="hero-3d-element surface-card relative w-full p-2 transition-transform duration-700 ease-out transform-gpu rotate-x-[12deg] rotate-y-[-4deg] scale-[0.97] hover:rotate-x-0 hover:rotate-y-0 hover:scale-100 group">
+                        <section id="hero-cinematic-stage" class="relative w-full min-h-[600px] md:min-h-[700px] bg-transparent flex items-center justify-center pt-20 pb-32 overflow-visible">
+    
+    <div class="device-stage relative z-10 w-full max-w-6xl mx-auto perspective-[3000px] transform-style-3d flex justify-center items-center px-4">
         
-        <div class="absolute inset-0 rounded-2xl pointer-events-none shadow-[inset_0_1px_1px_rgba(255,255,255,0.15)]"></div>
-        
-        <div class="flex h-12 items-center border-b border-white/5 bg-black/40 px-4 rounded-t-xl relative z-10">
-            <div class="flex gap-2 group/dots">
-                <div class="h-2.5 w-2.5 rounded-full bg-white/20 transition-colors duration-300 group-hover/dots:bg-red-500 shadow-[0_0_10px_rgba(239,68,68,0)] group-hover/dots:shadow-[0_0_10px_rgba(239,68,68,0.5)]"></div>
-                <div class="h-2.5 w-2.5 rounded-full bg-white/20 transition-colors duration-300 group-hover/dots:bg-yellow-500 shadow-[0_0_10px_rgba(234,179,8,0)] group-hover/dots:shadow-[0_0_10px_rgba(234,179,8,0.5)]"></div>
-                <div class="h-2.5 w-2.5 rounded-full bg-white/20 transition-colors duration-300 group-hover/dots:bg-green-500 shadow-[0_0_10px_rgba(34,197,94,0)] group-hover/dots:shadow-[0_0_10px_rgba(34,197,94,0.5)]"></div>
-            </div>
-            <div class="mx-auto flex h-7 w-80 items-center justify-center gap-2 rounded-md bg-white/[0.02] border border-white/[0.05] shadow-[inset_0_1px_2px_rgba(0,0,0,0.5)] text-[11px] font-mono text-white/40">
-                <i data-lucide="lock" class="w-3 h-3 text-cyan-500/70"></i>
-                <span class="text-white/70">admin.purelayout.dev</span>
-                <span class="ml-2 rounded-[3px] bg-white/10 px-1.5 py-0.5 text-[8px] tracking-wider text-white/60">BETA</span>
-            </div>
-            <div class="w-12"></div>
-        </div>
-        
-        <div class="relative h-[440px] w-full overflow-hidden rounded-b-xl bg-gradient-to-b from-[#02040A] to-[#010205] p-6">
+        <div class="laptop-mesh relative w-full md:w-[720px] aspect-[16/10] rounded-[20px] bg-[#030508]/80 border border-white/[0.08] backdrop-blur-3xl transform-gpu will-change-transform flex flex-col overflow-hidden shadow-[0_100px_150px_-20px_rgba(0,0,0,0.8),0_0_80px_rgba(34,211,238,0.05),inset_0_1px_1px_rgba(255,255,255,0.15)] z-10">
             
-            <div class="mockup-glow mockup-glow--cyan" aria-hidden="true"></div>
-            <div class="mockup-glow mockup-glow--blue" aria-hidden="true"></div>
+            <div class="glass-glare absolute inset-0 bg-gradient-to-tr from-white/[0.01] via-white/[0.06] to-transparent z-50 pointer-events-none transform -skew-x-[20deg] -translate-x-[150%] mix-blend-plus-lighter" aria-hidden="true"></div>
 
-            <div class="flex h-full gap-6 relative z-10">
-                <div class="w-48 flex-shrink-0 flex flex-col gap-2 border-r border-white/5 pr-6">
-                    <div class="flex items-center gap-3 mb-4 p-2 rounded-xl bg-gradient-to-br from-white/[0.05] to-transparent border border-white/[0.02]">
-                        <div class="h-8 w-8 rounded-full bg-cyan-500/20 border border-cyan-500/30 flex items-center justify-center">
-                            <i data-lucide="zap" class="w-4 h-4 text-cyan-400"></i>
-                        </div>
-                        <div class="flex flex-col">
-                            <span class="text-xs text-white font-medium">Workspace</span>
-                            <span class="text-[9px] text-white/40 font-mono">ID: 0x8F2A</span>
-                        </div>
-                    </div>
-                    <div class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-medium cursor-default">
-                        <i data-lucide="layout-dashboard" class="w-4 h-4"></i> Overview
-                    </div>
-                    <div class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-white/40 text-xs font-medium cursor-default">
-                        <i data-lucide="bar-chart-3" class="w-4 h-4"></i> Analytics
-                    </div>
-                    <div class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-white/40 text-xs font-medium cursor-default">
-                        <i data-lucide="users" class="w-4 h-4"></i> Audience
-                    </div>
-                    <div class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-white/40 text-xs font-medium cursor-default">
-                        <i data-lucide="settings" class="w-4 h-4"></i> Settings
-                    </div>
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[120px] h-5 bg-[#000000] rounded-b-xl border-b border-x border-white/10 z-40 flex items-center justify-center shadow-[0_10px_20px_rgba(0,0,0,0.8)]">
+                <div class="w-1.5 h-1.5 rounded-full bg-[#050812] border border-white/[0.15] relative overflow-hidden flex items-center justify-center">
+                    <div class="w-0.5 h-0.5 bg-blue-500 rounded-full blur-[0.3px]"></div>
                 </div>
+                <div class="w-1 h-1 rounded-full bg-green-500/80 ml-2 blur-[0.5px]"></div>
+            </div>
 
-                <div class="flex-1 flex flex-col gap-6">
-                    
-                    <div class="flex gap-4">
-                        <div class="h-28 flex-1 rounded-xl bg-white/[0.02] border border-white/[0.05] p-4 relative overflow-hidden flex flex-col justify-between shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)]">
-                            <div class="absolute inset-0 bg-gradient-to-br from-green-500/10 to-transparent opacity-50"></div>
-                            <div class="flex items-center justify-between relative z-10">
-                                <span class="text-[10px] uppercase tracking-widest text-white/50 font-mono">Performance</span>
-                                <i data-lucide="activity" class="w-4 h-4 text-green-400"></i>
+            <div class="flex-1 w-full bg-[#010204] relative overflow-hidden flex flex-col z-10 border-[4px] border-[#0A0A0C] rounded-[18px] shadow-[inset_0_0_40px_rgba(0,0,0,1)]">
+                
+                <div class="absolute inset-0 opacity-[0.08] pointer-events-none" style="background-image: linear-gradient(rgba(255, 255, 255, 0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.2) 1px, transparent 1px); background-size: 30px 30px;" aria-hidden="true"></div>
+                
+                <div class="glow-orb absolute -top-[50%] left-1/2 -translate-x-1/2 w-[90%] h-[90%] bg-cyan-500/15 blur-[100px] rounded-full pointer-events-none mix-blend-screen" aria-hidden="true"></div>
+
+                <div class="flex h-full w-full relative z-20">
+                    <div class="w-[22%] hidden md:flex flex-col border-r border-white/[0.03] bg-gradient-to-r from-transparent to-white/[0.01] p-6 pt-10">
+                        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500/20 to-transparent border border-cyan-400/20 mb-10 flex items-center justify-center shadow-[0_0_20px_rgba(34,211,238,0.1)]">
+                            <div class="w-3 h-3 rounded-full bg-cyan-300 shadow-[0_0_15px_#22d3ee]"></div>
+                        </div>
+                        <div class="w-2/3 h-2 rounded-full bg-white/10 mb-5"></div>
+                        <div class="w-1/2 h-2 rounded-full bg-white/5 mb-10"></div>
+                        
+                        <div class="space-y-4 mt-auto opacity-40">
+                            <div class="w-full h-6 rounded-md bg-white/[0.03]"></div>
+                            <div class="w-full h-6 rounded-md bg-white/[0.03]"></div>
+                        </div>
+                    </div>
+
+                    <div class="flex-1 p-10 flex flex-col justify-end relative">
+                        <div class="w-[30%] h-5 rounded-full bg-gradient-to-r from-white/90 to-white/10 mb-4 blur-[0.3px]"></div>
+                        <div class="w-[20%] h-2 rounded-full bg-white/20 mb-16"></div>
+
+                        <div class="w-full max-w-3xl h-44 relative flex items-end justify-between gap-3 opacity-90" aria-hidden="true">
+                            <div class="chart-bar w-full bg-gradient-to-t from-cyan-900/40 via-cyan-600/20 to-transparent rounded-t-sm h-[40%] border-t border-cyan-500/30 transition-gpu"></div>
+                            <div class="chart-bar w-full bg-gradient-to-t from-cyan-900/40 via-cyan-600/20 to-transparent rounded-t-sm h-[60%] border-t border-cyan-500/40 transition-gpu"></div>
+                            
+                            <div class="chart-bar w-full bg-gradient-to-t from-cyan-400/30 via-cyan-400/10 to-transparent rounded-t-sm h-[95%] border-t-[2px] border-cyan-300 shadow-[0_-20px_40px_rgba(34,211,238,0.25)] relative group z-10 transition-gpu">
+                                <div class="absolute -top-4 left-1/2 -translate-x-1/2 w-8 h-8 bg-cyan-400/20 rounded-full blur-md"></div>
+                                <div class="absolute -top-1.5 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-cyan-200 border border-white shadow-[0_0_20px_#22d3ee,inset_0_0_5px_#fff]"></div>
+                                <div class="absolute top-2 left-1/2 -translate-x-1/2 w-[1px] h-full bg-gradient-to-b from-cyan-400/50 to-transparent"></div>
                             </div>
-                            <div class="flex items-baseline gap-2 relative z-10">
-                                <span class="text-3xl font-syne text-white font-bold">100</span>
-                                <span class="text-xs text-green-400">+2.4%</span>
-                            </div>
+                            
+                            <div class="chart-bar w-full bg-gradient-to-t from-cyan-900/40 via-cyan-600/20 to-transparent rounded-t-sm h-[70%] border-t border-cyan-500/40 transition-gpu"></div>
+                            <div class="chart-bar w-full bg-gradient-to-t from-cyan-900/40 via-cyan-600/20 to-transparent rounded-t-sm h-[45%] border-t border-cyan-500/30 transition-gpu"></div>
                         </div>
                         
-                        <div class="h-28 flex-1 rounded-xl bg-white/[0.02] border border-white/[0.05] p-4 relative flex flex-col justify-between shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)]">
-                            <div class="flex items-center justify-between">
-                                <span class="text-[10px] uppercase tracking-widest text-white/50 font-mono">Edge Latency</span>
-                                <i data-lucide="globe" class="w-4 h-4 text-cyan-400"></i>
-                            </div>
-                            <div class="flex flex-col">
-                                <span class="text-3xl font-syne text-cyan-400 font-bold">12<span class="text-lg text-cyan-400/50">ms</span></span>
-                                <div class="h-1 w-full bg-white/5 rounded-full mt-2 overflow-hidden">
-                                    <div class="h-full bg-cyan-400 w-1/4 rounded-full"></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="h-28 flex-1 rounded-xl bg-white/[0.02] border border-white/[0.05] p-4 relative flex flex-col justify-between shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)]">
-                            <div class="flex items-center justify-between">
-                                <span class="text-[10px] uppercase tracking-widest text-white/50 font-mono">System Uptime</span>
-                                <div class="relative flex h-2.5 w-2.5">
-                                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                                  <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
-                                </div>
-                            </div>
-                            <div class="flex items-baseline gap-2">
-                                <span class="text-3xl font-syne text-white font-bold">99.9<span class="text-lg text-white/50">%</span></span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="flex-1 rounded-xl bg-white/[0.01] border border-white/[0.03] relative overflow-hidden p-4 flex flex-col justify-end shadow-[inset_0_1px_1px_rgba(255,255,255,0.02)]">
-                        <div class="absolute top-4 left-4 flex items-center gap-2">
-                            <div class="h-2 w-2 rounded-full bg-cyan-500"></div>
-                            <span class="text-xs text-white/60 font-medium">Tráfego Global (24h)</span>
-                        </div>
-                        
-                        <div class="absolute inset-0 flex flex-col justify-between pt-12 pb-4 px-4 pointer-events-none opacity-20">
-                            <div class="w-full border-t border-dashed border-white/20"></div>
-                            <div class="w-full border-t border-dashed border-white/20"></div>
-                            <div class="w-full border-t border-dashed border-white/20"></div>
-                            <div class="w-full border-t border-dashed border-white/20"></div>
-                        </div>
-
-                        <svg class="relative w-full h-[70%] text-cyan-500/20" preserveAspectRatio="none" viewBox="0 0 100 100">
-                            <defs>
-                                <linearGradient id="chartGlow" x1="0" y1="0" x2="0" y2="1">
-                                    <stop offset="0%" stop-color="#22d3ee" stop-opacity="0.3"></stop>
-                                    <stop offset="100%" stop-color="#22d3ee" stop-opacity="0"></stop>
-                                </linearGradient>
-                            </defs>
-                            <path d="M0,90 Q10,70 20,80 T40,50 T60,60 T80,30 T100,40 L100,100 L0,100 Z" fill="url(#chartGlow)" />
-                            <path d="M0,90 Q10,70 20,80 T40,50 T60,60 T80,30 T100,40" fill="none" stroke="#22d3ee" stroke-width="1.5" stroke-linecap="round" />
-                        </svg>
-
-                        <div class="absolute right-[4%] top-[45%] h-3 w-3 rounded-full bg-white shadow-[0_0_15px_rgba(34,211,238,1)] border-2 border-cyan-400 z-10"></div>
+                        <div class="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-cyan-500/30 to-transparent"></div>
                     </div>
                 </div>
             </div>
 
-            <div class="absolute -right-6 top-16 h-auto w-56 rounded-xl border border-white/10 bg-white/5 backdrop-blur-2xl shadow-[0_20px_40px_rgba(0,0,0,0.5)] p-3 transform translate-z-[60px] animate-[float_4s_ease-in-out_infinite] group-hover:border-cyan-500/30 transition-colors z-30">
-                <div class="flex items-center gap-3 mb-2">
-                    <div class="h-6 w-6 rounded-full bg-emerald-500/20 flex items-center justify-center border border-emerald-500/30">
-                        <i data-lucide="check" class="w-3 h-3 text-emerald-400"></i>
-                    </div>
-                    <div class="flex flex-col">
-                        <span class="text-[10px] text-white font-medium">Deploy Success</span>
-                        <span class="text-[8px] text-white/40 font-mono">Just now</span>
-                    </div>
-                </div>
-                <div class="h-1 w-full bg-white/5 rounded-full overflow-hidden">
-                    <div class="h-full bg-emerald-400 w-full rounded-full"></div>
-                </div>
+            <div class="h-4 w-full bg-gradient-to-b from-[#111318] via-[#050608] to-[#000] border-t border-white/20 relative z-30 rounded-b-[20px] shadow-[inset_0_-2px_10px_rgba(0,0,0,0.8),0_20px_40px_rgba(0,0,0,0.9)] flex justify-center">
+                <div class="w-32 h-[3px] bg-[#020203] rounded-b-lg shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)]"></div>
             </div>
-
-            <div class="absolute -left-8 bottom-12 h-auto w-48 rounded-xl border border-white/10 bg-[#050A15]/80 backdrop-blur-2xl shadow-[0_20px_40px_rgba(0,0,0,0.5)] p-3 transform translate-z-[40px] animate-[float_5s_ease-in-out_infinite_reverse] z-30">
-                <div class="flex items-center gap-3">
-                    <div class="h-8 w-8 rounded-lg bg-indigo-500/20 flex items-center justify-center border border-indigo-500/30">
-                        <i data-lucide="shield-check" class="w-4 h-4 text-indigo-400"></i>
-                    </div>
-                    <div class="flex flex-col">
-                        <span class="text-xs text-white font-medium">Edge Secure</span>
-                        <span class="text-[9px] text-indigo-400 font-mono">WAF Active</span>
-                    </div>
-                </div>
-            </div>
-
         </div>
-    </div>
+
+        <div class="mobile-mesh absolute -bottom-16 -right-4 md:-right-8 lg:-right-4 w-[200px] md:w-[260px] aspect-[9/19.5] rounded-[40px] bg-[#020203] border-[6px] md:border-[8px] border-[#0A0C10] shadow-[0_50px_100px_rgba(0,0,0,0.95),-30px_20px_60px_rgba(34,211,238,0.1),inset_0_2px_6px_rgba(255,255,255,0.3)] transform-gpu will-change-transform z-40 style='transform: translateZ(250px)'">
+            
+            <div class="absolute top-[25%] -left-[7px] md:-left-[9px] w-1 h-12 bg-gradient-to-b from-[#1a1c23] to-[#0a0c10] rounded-l-md border-y border-l border-white/10 shadow-[inset_1px_0_1px_rgba(255,255,255,0.1)]"></div>
+            <div class="absolute top-[38%] -left-[7px] md:-left-[9px] w-1 h-12 bg-gradient-to-b from-[#1a1c23] to-[#0a0c10] rounded-l-md border-y border-l border-white/10 shadow-[inset_1px_0_1px_rgba(255,255,255,0.1)]"></div>
+            <div class="absolute top-[32%] -right-[7px] md:-right-[9px] w-1 h-16 bg-gradient-to-b from-[#1a1c23] to-[#0a0c10] rounded-r-md border-y border-r border-white/10 shadow-[inset_-1px_0_1px_rgba(255,255,255,0.1)]"></div>
+
+            <div class="relative w-full h-full rounded-[32px] overflow-hidden bg-[#000000] shadow-[inset_0_0_15px_rgba(0,0,0,1)]">
+                
+                <div class="glass-glare-mobile absolute inset-0 bg-gradient-to-br from-white/[0.1] via-transparent to-transparent z-50 pointer-events-none mix-blend-screen opacity-70" aria-hidden="true"></div>
+                
+                <div class="absolute top-4 left-1/2 -translate-x-1/2 w-[38%] h-[22px] bg-[#000] rounded-full z-40 shadow-[inset_0_-1px_2px_rgba(255,255,255,0.05),0_5px_15px_rgba(0,0,0,0.8)] border border-white/[0.05] flex items-center justify-end px-2">
+                    <div class="w-1.5 h-1.5 rounded-full bg-[#0a1128] border border-white/10 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-0.5 h-0.5 bg-green-400/80 rounded-full blur-[0.2px]"></div>
+                    </div>
+                </div>
+
+                <div class="w-full h-full relative z-10 flex flex-col pt-16 p-5">
+                    <div class="absolute top-0 left-0 w-full h-[300px] bg-gradient-to-b from-blue-700/15 to-transparent blur-[50px] pointer-events-none" aria-hidden="true"></div>
+                    
+                    <div class="w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-white/[0.01] border border-white/[0.08] backdrop-blur-3xl shadow-[0_15px_30px_rgba(0,0,0,0.6),inset_0_1px_1px_rgba(255,255,255,0.1)] mb-8 flex items-center justify-center relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-br from-cyan-400/10 to-transparent"></div>
+                        <div class="w-6 h-6 md:w-7 md:h-7 rounded-full border-[2px] border-cyan-300 border-t-transparent animate-spin blur-[0.5px]"></div>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="w-6 h-6 md:w-7 md:h-7 rounded-full border-[1px] border-white/20 border-t-white/80 animate-[spin_1.5s_linear_infinite]"></div>
                         </div>
                     </div>
-
-                    <div class="hero-mobile-stage reveal-hero md:hidden" data-delay="6">
-                        <div class="mobile-preview-card mobile-preview-card--elite">
-                            <div class="mobile-preview-bar">
-                                <span class="mobile-preview-dot"></span>
-                                <span class="mobile-preview-dot"></span>
-                                <span class="mobile-preview-dot"></span>
-                                <span class="mobile-preview-url">studio.purelayout.dev</span>
-                            </div>
-                            <div class="mobile-preview-body">
-                                <div class="mobile-preview-row">
-                                    <span class="mobile-preview-label">Conversão</span>
-                                    <span class="mobile-preview-num text-cyan-400">+340%</span>
-                                </div>
-                                <div class="mobile-preview-row">
-                                    <span class="mobile-preview-label">Performance</span>
-                                    <span class="mobile-preview-num">100</span>
-                                </div>
-                                <div class="mobile-preview-chart" aria-hidden="true"></div>
-                            </div>
+                    
+                    <div class="w-[90%] h-3 md:h-4 rounded-full bg-gradient-to-r from-white/90 to-white/40 mb-3 blur-[0.2px]"></div>
+                    <div class="w-[60%] h-2 md:h-2.5 rounded-full bg-white/20 mb-10"></div>
+                    
+                    <div class="space-y-4">
+                        <div class="w-full h-12 md:h-14 rounded-2xl bg-gradient-to-b from-white/[0.04] to-transparent border border-white/[0.03] flex items-center px-4 gap-4 shadow-[0_5px_10px_rgba(0,0,0,0.3)]">
+                            <div class="w-3 h-3 md:w-4 md:h-4 rounded-full bg-cyan-400/80 shadow-[0_0_15px_rgba(34,211,238,0.4)]"></div>
+                            <div class="w-[50%] h-1.5 md:h-2 rounded-full bg-white/30"></div>
+                        </div>
+                        <div class="w-full h-12 md:h-14 rounded-2xl bg-gradient-to-b from-white/[0.04] to-transparent border border-white/[0.03] flex items-center px-4 gap-4 shadow-[0_5px_10px_rgba(0,0,0,0.3)]">
+                            <div class="w-3 h-3 md:w-4 md:h-4 rounded-full bg-blue-500/80 shadow-[0_0_15px_rgba(59,130,246,0.4)]"></div>
+                            <div class="w-[70%] h-1.5 md:h-2 rounded-full bg-white/30"></div>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+
+    </div>
+</section>
 
                 <a href="#diferenciais" class="hero-scroll-hint motion-reduce:hidden" aria-label="Rolar para conteúdo">
                     <span>Explorar</span>
@@ -928,16 +844,127 @@
         <i data-lucide="message-circle" class="h-6 w-6" aria-hidden="true"></i>
     </a>
 
-    <div id="page-loader" class="page-loader" aria-hidden="true">
-        <div class="page-loader-inner">
-            <div class="page-loader-bar"></div>
-            <span class="font-jetbrains text-[10px] uppercase tracking-widest text-white/40">Carregando</span>
+    <div id="premium-loader" class="fixed inset-0 z-[9999] bg-[#020203] flex items-center justify-center font-mono overflow-hidden">
+    
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:32px_32px]"></div>
+    
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40vw] h-[40vw] bg-cyan-600/10 rounded-full blur-[120px] pointer-events-none"></div>
+
+    <div class="relative z-10 w-full max-w-[400px] px-8 flex flex-col">
+        <div class="flex justify-between items-end mb-4 overflow-hidden">
+            <span class="loader-label text-[10px] text-white/40 tracking-[0.4em] uppercase transform translate-y-full will-change-transform">
+                Sistema
+            </span>
+            <div class="flex gap-1 overflow-hidden">
+                <span class="loader-percent text-4xl font-light text-white leading-none transform translate-y-full will-change-transform">0</span>
+                <span class="loader-percent-symbol text-sm text-cyan-400 transform translate-y-full will-change-transform">%</span>
+            </div>
+        </div>
+
+        <div class="w-full h-[2px] bg-white/5 relative overflow-hidden rounded-full">
+            <div class="loader-progress absolute top-0 left-0 h-full w-0 bg-gradient-to-r from-cyan-900 via-cyan-400 to-white shadow-[0_0_15px_rgba(34,211,238,0.5)]"></div>
+        </div>
+
+        <div class="mt-4 h-4 overflow-hidden flex justify-end">
+            <span class="loader-status text-[9px] text-white/30 tracking-[0.2em] uppercase transform translate-y-full will-change-transform">
+                Iniciando protocolos...
+            </span>
         </div>
     </div>
+</div>
 
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
     <script src="main.js" defer></script>
+    <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/",
+      "gsap": "https://unpkg.com/gsap@3.12.5/index.js"
+    }
+  }
+</script>
+    <script src="https://unpkg.com/gsap@3.12.5/dist/gsap.min.js"></script>
+
+<script type="module">
+    // Three.js removido - Não é mais necessário para o fundo vazio.
+    import gsap from 'gsap';
+
+    // ==========================================
+    // GSAP MOTION: CINEMATIC INERTIA
+    // ==========================================
+    const laptop = document.querySelector('.laptop-mesh');
+    const mobile = document.querySelector('.mobile-mesh');
+    const laptopGlare = document.querySelector('.glass-glare');
+    const mobileGlare = document.querySelector('.glass-glare-mobile');
+
+    // Estado Zero (Entrada escondida)
+    gsap.set([laptop, mobile], { opacity: 0, z: -500, rotationX: 10 });
+    gsap.set(mobile, { x: 100, rotationY: -15 });
+
+    // GSAP QuickTo para performance em 60fps constantes
+    const moveProps = {
+        lapRotX: gsap.quickTo(laptop, "rotationX", { duration: 1.5, ease: "power3.out" }),
+        lapRotY: gsap.quickTo(laptop, "rotationY", { duration: 1.5, ease: "power3.out" }),
+        lapGlare: gsap.quickTo(laptopGlare, "xPercent", { duration: 1, ease: "power2.out" }),
+        
+        mobRotX: gsap.quickTo(mobile, "rotationX", { duration: 2, ease: "power3.out" }),
+        mobRotY: gsap.quickTo(mobile, "rotationY", { duration: 2, ease: "power3.out" }),
+        mobX: gsap.quickTo(mobile, "x", { duration: 2, ease: "power3.out" }),
+        mobY: gsap.quickTo(mobile, "y", { duration: 2, ease: "power3.out" })
+    };
+
+    if (window.matchMedia("(pointer: fine)").matches) {
+        window.addEventListener('mousemove', (e) => {
+            const nx = (e.clientX / window.innerWidth) * 2 - 1;
+            const ny = -(e.clientY / window.innerHeight) * 2 + 1;
+
+            // FÍSICA CINEMATOGRÁFICA (A rotação base do mobile é -12 para olhar para o centro)
+            moveProps.lapRotX(ny * 3); 
+            moveProps.lapRotY(nx * 4);
+            moveProps.lapGlare(nx * 150);
+
+            moveProps.mobRotX(ny * 6 + 5);
+            moveProps.mobRotY(nx * 10 - 12);
+            moveProps.mobX(nx * 30);
+            moveProps.mobY(-ny * 20); // Parallax X/Y reverso acentuado
+        });
+    }
+
+    // ==========================================
+    // ANIMAÇÃO DE ENTRADA & PROCEDURAL FLOATING
+    // ==========================================
+    const masterTimeline = gsap.timeline({
+        onComplete: () => {
+            // "Floating" procedural assíncrono pós-entrada (Respiração natural)
+            gsap.to(laptop, { y: -15, rotationZ: 0.2, duration: 4.5, ease: "sine.inOut", yoyo: true, repeat: -1 });
+            gsap.to(mobile, { y: -25, rotationZ: -0.5, duration: 5.5, ease: "sine.inOut", yoyo: true, repeat: -1, delay: 0.2 });
+            
+            // Loop de iluminação interna dos gráficos
+            gsap.to('.chart-bar', { height: '+=5%', duration: 2, ease: "sine.inOut", stagger: { amount: 1.5, from: "center", yoyo: true, repeat: -1 }});
+        }
+    });
+
+    masterTimeline
+      // Three.js/Canvas removido da timeline
+      .to(laptop, {
+          opacity: 1,
+          z: 0,
+          rotationX: 0,
+          duration: 2.5,
+          ease: "expo.out"
+      }, 0) // Começa no tempo 0
+      .to(mobile, {
+          opacity: 1,
+          x: 0,
+          z: 250, // "Pula" para fora da tela fisicamente
+          rotationX: 5,
+          duration: 2.5,
+          ease: "expo.out"
+      }, "-=2.2"); // Overlap com a entrada do laptop
+
+</script>
 </body>
 </html>
