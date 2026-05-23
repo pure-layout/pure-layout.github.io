@@ -153,7 +153,7 @@
 
                         <p class="hero-trust reveal-hero" data-delay="4">Sem compromisso · Resposta em até 24h · João Pessoa, PB</p>
 
-                        <section id="hero-cinematic-stage" class="relative w-full min-h-[500px] md:min-h-[300px] bg-transparent flex items-center justify-center mt-52 pt-10 pb-22 overflow-visible">
+                        <section id="hero-cinematic-stage" class="relative w-full min-h-[500px] md:min-h-[300px] bg-transparent flex items-center justify-center mt-52 pt-20 pb-32 overflow-visible">
     
     <div class="device-stage relative z-10 w-full max-w-6xl mx-auto perspective-[3000px] transform-style-3d flex justify-center items-center px-4">
         
@@ -492,16 +492,68 @@
         
         <div class="mt-auto flex flex-col gap-8">
             
-            <div class="flex items-center justify-center relative">
-                <svg class="w-32 h-32 transform -rotate-90">
-                    <circle cx="64" cy="64" r="50" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="6"></circle>
-                    <circle cx="64" cy="64" r="50" fill="none" stroke="#22c55e" stroke-width="6" stroke-dasharray="314" stroke-dashoffset="314" class="transition-all duration-[1.5s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:stroke-dashoffset-0" stroke-linecap="round"></circle>
-                </svg>
-                
-                <div class="absolute inset-0 flex flex-col items-center justify-center">
-                    <span class="text-4xl font-syne font-bold text-green-400 drop-shadow-[0_0_15px_rgba(34,197,94,0.4)] tracking-tighter">100</span>
-                </div>
-            </div>
+            <div class="relative flex items-center justify-center w-40 h-40 group">
+
+    <!-- Glow externo -->
+    <div class="absolute inset-0 rounded-full bg-green-500/10 blur-3xl scale-110"></div>
+
+    <!-- SVG -->
+    <svg
+        class="absolute inset-0 w-full h-full -rotate-90"
+        viewBox="0 0 160 160"
+        fill="none"
+    >
+        <!-- Background circle -->
+        <circle
+            cx="80"
+            cy="80"
+            r="62"
+            stroke="rgba(255,255,255,0.06)"
+            stroke-width="8"
+        />
+
+        <!-- Glow trail -->
+        <circle
+            cx="80"
+            cy="80"
+            r="62"
+            stroke="rgba(34,197,94,0.15)"
+            stroke-width="14"
+            class="blur-[6px]"
+        />
+
+        <!-- Progress circle -->
+        <circle
+            cx="80"
+            cy="80"
+            r="62"
+            stroke="url(#scoreGradient)"
+            stroke-width="8"
+            stroke-linecap="round"
+            stroke-dasharray="389.6"
+            stroke-dashoffset="0"
+            class="drop-shadow-[0_0_18px_rgba(34,197,94,0.45)]"
+        />
+
+        <!-- Gradient -->
+        <defs>
+            <linearGradient id="scoreGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#4ade80" />
+                <stop offset="100%" stop-color="#22c55e" />
+            </linearGradient>
+        </defs>
+    </svg>
+
+    <!-- Conteúdo central -->
+    <div class="relative z-10 flex flex-col items-center justify-center">
+
+        <span class="text-5xl font-bold font-syne text-white tracking-tighter leading-none">
+            100
+        </span>
+
+    </div>
+
+</div>
 
             <div class="space-y-5">
                 <div>
