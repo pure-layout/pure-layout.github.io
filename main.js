@@ -406,3 +406,9 @@ if (document.readyState === 'loading') {
 } else {
   bootstrap();
 }
+
+if(this.isMobile){
+    this.mouse.current.lerp(this.mouse.target, 0.02);
+}else{
+    this.mouse.current.lerp(this.mouse.target, 0.05);
+}
